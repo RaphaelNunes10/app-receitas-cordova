@@ -1,5 +1,7 @@
-import { Component, inject } from '@angular/core';
-import { RefresherCustomEvent } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { Receita } from 'src/models/receita.interface';
+
+import { InfiniteScrollCustomEvent } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,4 +9,11 @@ import { RefresherCustomEvent } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  receitas: Receita[] = [];
+
+  onIonInfinite(ev: InfiniteScrollCustomEvent) {
+    setTimeout(() => {
+      (ev as InfiniteScrollCustomEvent).target.complete();
+    }, 500);
+  }
 }
