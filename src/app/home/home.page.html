@@ -15,7 +15,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-list>
+  <ion-list *ngIf="receitas.length > 0">
     <ion-item *ngFor="let receita of receitas; let index">
       <ion-card>
         <ion-card-header>
@@ -24,8 +24,8 @@
         </ion-card-header>
 
         <ion-card-content>
-          <ion-img [src]="receita.imagem" />
-          <p>{{receita.info}}</p>
+          <ion-img [src]="receita.imagens[0]" />
+          <p>{{receita.descricao}}</p>
         </ion-card-content>
       </ion-card>
     </ion-item>
