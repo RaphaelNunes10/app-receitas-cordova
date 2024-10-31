@@ -9,7 +9,11 @@ import { InfiniteScrollCustomEvent } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  receitas: Receita[] = [];
+  receitas: Receita[];
+
+  constructor() {
+    this.receitas = []
+  }
 
   onIonInfinite(ev: InfiniteScrollCustomEvent) {
     setTimeout(() => {
