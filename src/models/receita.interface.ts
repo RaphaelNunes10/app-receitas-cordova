@@ -1,5 +1,5 @@
-export type PeriodoPreparo = `Segundos${'s' | ''}` | `Minuto${'s' | ''}` | `Hora${'s' | ''}`
-export type MedidaPorcao = `Unidade${'s' | ''}` | `Pedaço${'s' | ''}` | `Fatia${'s' | ''}` | 'g' | 'kg' | 'L' | `Pessoa${'s' | ''}`
+export type PeriodoPreparo = 'Segundo(s)' | 'Minuto(s)' | 'Hora(s)'
+export type MedidaPorcao = 'Unidade(s)' | 'Pedaço(s)' | 'Fatia(s)' | 'g' | 'kg' | 'L' | 'Pessoa(s)'
 export type MedidaIngrediente = 'Colher de Café' | 'Colher de Chá' | 'Colher de Sobremesa' | 'Colher de Sopa' | 'mg' | 'g' | 'Kg' | 'ml' | 'L'
 
 type UrlImagem = `http${'s' | ''}://${string}`
