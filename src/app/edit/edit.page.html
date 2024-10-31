@@ -14,43 +14,50 @@
   <ion-card>
     <ion-card-header>
       <ion-card-title>
-        <ion-input [(ngModel)]="receita.titulo" label="Titulo" labelPlacement="stacked"></ion-input>
+        <ion-input [(ngModel)]="receita.titulo" label="Titulo" labelPlacement="stacked" fill="outline"></ion-input>
       </ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-item>
-        <ion-label position="stacked">Imagem</ion-label>
-        <ion-grid class="m-0">
-          <ion-row>
-            <ion-col size="4" sizeMd="6" *ngFor="let imagem of receita.imagens; let index">
-              <img alt="Silhouette of mountains" [src]="imagem" class="w-full h-full min-w-[80px] min-h-[80px] md:max-w-[150px] md:max-h-[150px] bg-cover" />
-            </ion-col>
-            <ion-col size="4" sizeMd="6">
-              <ion-button expand="full" class="w-full h-full min-w-[80px] min-h-[80px] md:min-w-[150px] md:min-h-[150px] m-0" (click)="addImagem()">
-                <ion-icon name="add"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
+      <ion-list mode="md">
+        <ion-item class="my-2">
+          <ion-label position="stacked">Imagem</ion-label>
+          <ion-grid class="m-0">
+            <ion-row>
+              <ion-col size="4" sizeMd="6" *ngFor="let imagem of receita.imagens; let index">
+                <img alt="Silhouette of mountains" [src]="imagem" class="w-full h-full min-w-[80px] min-h-[80px] md:max-w-[150px] md:max-h-[150px] bg-cover" />
+              </ion-col>
+              <ion-col size="4" sizeMd="6">
+                <ion-button expand="full" class="w-full h-full min-w-[80px] min-h-[80px] md:min-w-[150px] md:min-h-[150px] m-0" (click)="addImagem()">
+                  <ion-icon name="add"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
 
-      <ion-item>
-        <ion-textarea [(ngModel)]="receita.descricao" label="Descrição" labelPlacement="stacked"></ion-textarea>
-      </ion-item>
+        <ion-item>
+          <ion-textarea [(ngModel)]="receita.descricao" label="Descrição" labelPlacement="stacked"></ion-textarea>
+        </ion-item>
 
-      <ion-item>
-        <ion-textarea [(ngModel)]="receita.preparo" label="Preparo" labelPlacement="stacked"></ion-textarea>
-      </ion-item>
+        <ion-item>
+          <ion-textarea [(ngModel)]="receita.preparo" label="Preparo" labelPlacement="stacked"></ion-textarea>
+        </ion-item>
 
-      <ion-item>
-        <ion-input type="number" [(ngModel)]="receita.tempoPreparo" label="Tempo Preparo" labelPlacement="stacked"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="receita.tempoPreparo" [placeholder]="0" label="Tempo Preparo" labelPlacement="stacked"></ion-input> 
+          <ion-select [placeholder]="periodosPreparo[0]">
+            <ion-select-option *ngFor="let periodo of periodosPreparo" [value]="periodo">{{ periodo }}</ion-select-option>
+          </ion-select>
+        </ion-item>
 
-      <ion-item>
-        <ion-input type="number" [(ngModel)]="receita.porcao" label="Porção" labelPlacement="stacked"></ion-input>
-      </ion-item>
-
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="receita.porcao" [placeholder]="0" label="Porção" labelPlacement="stacked"></ion-input>
+          <ion-select [placeholder]="medidasPorcao[0]">
+            <ion-select-option *ngFor="let medida of medidasPorcao" [value]="medida">{{ medida }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
     </ion-card-content>
   </ion-card>
 </ion-content>

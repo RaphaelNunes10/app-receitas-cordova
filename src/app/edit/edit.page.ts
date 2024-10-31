@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Receita } from 'src/models/receita.interface';
+import { MedidaPorcao, PeriodoPreparo, Receita } from 'src/models/receita.interface';
 
 import { Camera } from '@capacitor/camera';
 
@@ -9,19 +9,41 @@ import { Camera } from '@capacitor/camera';
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage {
-  receita: Receita = {
-    id: '',
-    titulo: '',
-    imagens: [],
-    descricao: '',
-    preparo: '',
-    tempoPreparo: '',
-    porcao: '',
-    ingredientes: [],
-    utensilios: [],
-    notasAdicionais: '',
-    dataCriacao: undefined
-  };
+  receita: Receita
+  periodosPreparo: PeriodoPreparo[]
+  medidasPorcao: MedidaPorcao[]
+
+  constructor() {
+   this.receita = {
+      id: '',
+      titulo: '',
+      imagens: [],
+      descricao: '',
+      preparo: '',
+      tempoPreparo: '',
+      porcao: '',
+      ingredientes: [],
+      utensilios: [],
+      notasAdicionais: '',
+      dataCriacao: undefined,
+    }
+
+    this.periodosPreparo = [
+      'Segundo(s)',
+      'Minuto(s)',
+      'Hora(s)',
+    ]
+
+    this.medidasPorcao = [
+      'Unidade(s)',
+      'Pedaço(s)',
+      'Fatia(s)',
+      'g',
+      'kg',
+      'L',
+      'Pessoa(s)',
+    ]
+  }
 
   async addImagem() {
     try {
