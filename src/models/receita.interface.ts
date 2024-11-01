@@ -1,12 +1,13 @@
 export type PeriodoPreparo = 'Segundo(s)' | 'Minuto(s)' | 'Hora(s)'
-export type MedidaPorcao = 'Unidade(s)' | 'Pedaço(s)' | 'Fatia(s)' | 'g' | 'kg' | 'L' | 'Pessoa(s)'
 export type MedidaIngrediente = 'Colher de Café' | 'Colher de Chá' | 'Colher de Sobremesa' | 'Colher de Sopa' | 'mg' | 'g' | 'Kg' | 'ml' | 'L'
+export type MedidaPorcao = 'Unidade(s)' | 'Pedaço(s)' | 'Fatia(s)' | 'g' | 'kg' | 'L' | 'Pessoa(s)'
 
-type UrlImagem = `http${'s' | ''}://${string}`
-type ImagemBase64 = `data:image/${string};base64,${string}`
+// type UrlImagem = `http${'s' | ''}://${string}`
+// type ImagemBase64 = `data:image/${string};base64,${string}`
+type Passo = `• ${string}`
+type Ingrediente = `${number} ${MedidaIngrediente} de ${string}`
 type TempoPreparo = `${number} ${PeriodoPreparo}`
 type Porcao = `${number} ${MedidaPorcao}`
-type Ingrediente = `${number} ${MedidaIngrediente} de ${string}`
 type Utensilio = `${number}x ${string}`
 
 export interface Receita {
@@ -14,10 +15,10 @@ export interface Receita {
   titulo: string,
   imagens: string[],
   descricao: string,
-  preparo: string,
+  preparo: Passo[],
+  ingredientes: Ingrediente[],
   tempoPreparo: TempoPreparo | '',
   porcao: Porcao | '',
-  ingredientes: Ingrediente[],
   utensilios: Utensilio[],
   notasAdicionais: string,
   dataCriacao: Date | undefined
