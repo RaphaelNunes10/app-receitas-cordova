@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MedidaPorcao, PeriodoPreparo, Receita } from 'src/models/receita.interface';
+import { MedidaIngrediente, MedidaPorcao, PeriodoPreparo, Receita } from 'src/models/receita.interface';
 
 import { Camera } from '@capacitor/camera';
 
@@ -10,6 +10,7 @@ import { Camera } from '@capacitor/camera';
 })
 export class EditPage {
   receita: Receita
+  medidasIngrediente: MedidaIngrediente[]
   periodosPreparo: PeriodoPreparo[]
   medidasPorcao: MedidaPorcao[]
 
@@ -19,14 +20,47 @@ export class EditPage {
       titulo: '',
       imagens: [],
       descricao: '',
-      preparo: [],
-      ingredientes: [],
-      tempoPreparo: '',
-      porcao: '',
-      utensilios: [],
+      preparo: [
+        {
+          passo: ''
+        }
+      ],
+      ingredientes: [
+        {
+          quantidade: 0,
+          medida: 'Colher de Café',
+          ingrediente: '',
+        }
+      ],
+      tempoPreparo: {
+        valor: 0,
+        periodo: 'Segundo(s)',
+      },
+      porcao: {
+        quantidade: 0,
+        medida: 'Unidade(s)'
+      },
+      utensilios: [
+        {
+          quantidade: 0,
+          utensilio: ''
+        }
+      ],
       notasAdicionais: '',
       dataCriacao: undefined,
     }
+
+    this.medidasIngrediente = [
+      'Colher de Café',
+      'Colher de Chá',
+      'Colher de Sobremesa',
+      'Colher de Sopa',
+      'mg',
+      'g',
+      'Kg',
+      'ml',
+      'L',
+    ]
 
     this.periodosPreparo = [
       'Segundo(s)',
