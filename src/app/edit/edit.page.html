@@ -22,11 +22,11 @@
       <ion-item>
         <ion-grid class="mx-0 px-0">
           <ion-row>
-            <ion-col size="4" sizeMd="6" *ngFor="let imagem of receita.imagens; let index">
+            <ion-col size="4" sizeMd="2" sizeLg="1" *ngFor="let imagem of receita.imagens; let index">
               <img alt="Silhouette of mountains" [src]="imagem" class="w-full h-full min-w-[80px] min-h-[80px] md:max-w-[150px] md:max-h-[150px] bg-cover" />
             </ion-col>
-            <ion-col size="4" sizeMd="6">
-              <ion-button expand="full" class="w-full h-full min-w-[80px] min-h-[80px] md:min-w-[150px] md:min-h-[150px] m-0" (click)="addImagem()">
+            <ion-col size="4" sizeMd="2" sizeLg="1">
+              <ion-button expand="full" class="w-full h-full w-[80px] h-[80px] md:w-[150px] md:h-[150px] m-0" (click)="addImagem()">
                 <ion-icon name="add"></ion-icon>
               </ion-button>
             </ion-col>
@@ -44,8 +44,8 @@
   <ion-card>
     <ion-card-content>
       <ion-label position="stacked">Preparo</ion-label>
-      <ion-item>
-        •&nbsp;<ion-input [(ngModel)]="receita.preparo"></ion-input>
+      <ion-item *ngFor="let preparo of receita.preparo">
+        •&nbsp;<ion-input [(ngModel)]="preparo.passo"></ion-input>
       </ion-item>
       <ion-button expand="full">Adicionar passo</ion-button>
     </ion-card-content>
@@ -54,8 +54,11 @@
   <ion-card>
     <ion-card-content>
       <ion-label position="stacked">Ingredientes</ion-label>
-      <ion-item>
-        <ion-input class="max-w-10" type="number" [(ngModel)]="receita.tempoPreparo" [placeholder]="0"></ion-input>
+      <ion-item *ngFor="let ingrediente of receita.ingredientes">
+        <ion-input [(ngModel)]="ingrediente.quantidade" class="max-w-10" type="number" [placeholder]="0"></ion-input>
+        <ion-select [(ngModel)]="ingrediente.medida" [placeholder]="medidasIngrediente[0]">
+          <ion-select-option *ngFor="let medida of medidasIngrediente" [value]="medida">{{ medida }}</ion-select-option>
+        </ion-select>
         &nbsp;
         <ion-label class="h-full !flex items-center justify-center">de</ion-label>
         &nbsp;
@@ -68,12 +71,12 @@
   <ion-card>
     <ion-card-content>
       <ion-label position="stacked">Utensílios</ion-label>
-      <ion-item>
-        <ion-input class="max-w-10" type="number" [placeholder]="0"></ion-input>
+      <ion-item *ngFor="let utensilho of receita.utensilios">
+        <ion-input [(ngModel)]="utensilho.quantidade" class="max-w-10" type="number" [placeholder]="0"></ion-input>
         &nbsp;
         <ion-label class="h-full !flex items-center justify-center">x</ion-label>
         &nbsp;
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="utensilho.utensilio"></ion-input>
       </ion-item>
       <ion-button expand="full">Adicionar Untensílio</ion-button>
     </ion-card-content>
@@ -83,19 +86,25 @@
     <ion-card-content>
       <ion-label position="stacked">Tempo Preparo</ion-label>
       <ion-item>
-        <ion-input type="number" [(ngModel)]="receita.tempoPreparo" [placeholder]="0"></ion-input>
-        <ion-select [placeholder]="periodosPreparo[0]">
+        <ion-input type="number" [(ngModel)]="receita.tempoPreparo.valor" [placeholder]="0"></ion-input>
+        <ion-select [(ngModel)]="receita.tempoPreparo.periodo" [placeholder]="periodosPreparo[0]">
           <ion-select-option *ngFor="let periodo of periodosPreparo" [value]="periodo">{{ periodo }}</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-label position="stacked">Porção</ion-label>
       <ion-item>
-        <ion-input type="number" [(ngModel)]="receita.porcao" [placeholder]="0"></ion-input>
-        <ion-select [placeholder]="medidasPorcao[0]">
+        <ion-input type="number" [(ngModel)]="receita.porcao.quantidade" [placeholder]="0"></ion-input>
+        <ion-select [(ngModel)]="receita.porcao.medida" [placeholder]="medidasPorcao[0]">
           <ion-select-option *ngFor="let medida of medidasPorcao" [value]="medida">{{ medida }}</ion-select-option>
         </ion-select>
       </ion-item>
     </ion-card-content>
   </ion-card>
+
+  <div class="!flex justify-center">
+    <ion-button shape="round" size="large">
+      Adicionar receita
+    </ion-button>
+  </div>
 </ion-content>
