@@ -75,12 +75,12 @@ export class EditPage {
   }
 
   async addItem(object: any, list: any[]) {
-    list.push(object);
+    list.push(object)
 
   }
 
   async removeItem(index: number, list: any[]) {
-    list.splice(index, 1);
+    list.splice(index, 1)
 
   }
 
