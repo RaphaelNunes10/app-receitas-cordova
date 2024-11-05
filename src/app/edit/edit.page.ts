@@ -84,10 +84,10 @@ export class EditPage {
       const imagem = await Camera.pickImages({
         quality: 90,
         limit: 1,
-      });
+      })
 
-      if (imagem.photos[0]?.path) {
-        this.receita.imagens.push(imagem.photos[0].path);
+      if (imagem.photos[0]) {
+        this.receita.imagens.push(imagem.photos[0].webPath);
       }
     } catch (error) {
       console.error('Error capturing image:', error);
