@@ -70,13 +70,7 @@
 
   <ion-card>
     <ion-card-content>
-      <ion-label position="stacked">Utensílios</ion-label>
-      <ion-item *ngFor="let utensilho of receita.utensilios">
-        <ion-input [(ngModel)]="utensilho.quantidade" class="max-w-10" type="number" [placeholder]="0"></ion-input>
-        &nbsp;
-        <ion-label class="h-full !flex items-center justify-center">x</ion-label>
-        &nbsp;
-        <ion-input [(ngModel)]="utensilho.utensilio"></ion-input>
+      <ion-label position="stacked">Utensílios (opcional)</ion-label>
       </ion-item>
       <ion-button expand="full">Adicionar Untensílio</ion-button>
     </ion-card-content>
@@ -84,7 +78,7 @@
 
   <ion-card>
     <ion-card-content>
-      <ion-label position="stacked">Tempo Preparo</ion-label>
+      <ion-label position="stacked">Tempo Preparo (opcional)</ion-label>
       <ion-item>
         <ion-input type="number" [(ngModel)]="receita.tempoPreparo.valor" [placeholder]="0"></ion-input>
         <ion-select [(ngModel)]="receita.tempoPreparo.periodo" [placeholder]="periodosPreparo[0]">
@@ -92,7 +86,7 @@
         </ion-select>
       </ion-item>
 
-      <ion-label position="stacked">Porção</ion-label>
+      <ion-label position="stacked">Porção (opcional)</ion-label>
       <ion-item>
         <ion-input type="number" [(ngModel)]="receita.porcao.quantidade" [placeholder]="0"></ion-input>
         <ion-select [(ngModel)]="receita.porcao.medida" [placeholder]="medidasPorcao[0]">
