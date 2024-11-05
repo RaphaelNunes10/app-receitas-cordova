@@ -3,10 +3,11 @@ export type MedidaIngrediente = 'Colher de Café' | 'Colher de Chá' | 'Colher d
 export type MedidaPorcao = 'Unidade(s)' | 'Pedaço(s)' | 'Fatia(s)' | 'g' | 'kg' | 'L' | 'Pessoa(s)'
 
 interface Preparo {
-  passo: string
+  listIndex: number,
 }
 
 interface Ingrediente {
+  listIndex: number,
   quantidade: number,
   medida: MedidaIngrediente,
   ingrediente: string,
@@ -23,6 +24,7 @@ interface Porcao {
 }
 
 interface Utensilio {
+  listIndex: number,
   quantidade: number,
   utensilio: string
 }

@@ -47,7 +47,9 @@
   <ion-card>
     <ion-card-content>
       <ion-label position="stacked">Preparo <span class="text-blue-400">*</span></ion-label>
-      <ion-item *ngFor="let preparo of receita.preparo">
+      <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event), receita.preparo)">
+        <ion-item *ngFor="let preparo of receita.preparo">
+          <ion-reorder slot="start"></ion-reorder>
           <ion-row class="w-full">
             <ion-col>
               <ion-textarea label="•" [(ngModel)]="preparo.passo" placeholder="{{ preparo.listIndex + 1 }}º passo" required></ion-textarea>
@@ -59,7 +61,8 @@
               </ion-button>
             </ion-col>
           </ion-row>
-      </ion-item>
+        </ion-item>
+      </ion-reorder-group>
       <ion-button expand="full" (click)="addItem({ passo: '' }, receita.preparo)">Adicionar passo</ion-button>
     </ion-card-content>
   </ion-card>
@@ -67,14 +70,16 @@
   <ion-card>
     <ion-card-content>
       <ion-label position="stacked">Ingredientes <span class="text-blue-400">*</span></ion-label>
-      <ion-item *ngFor="let ingrediente of receita.ingredientes">
+      <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event), receita.ingredientes)">
+        <ion-item *ngFor="let ingrediente of receita.ingredientes">
+          <ion-reorder slot="start"></ion-reorder>
           <ion-row class="w-full">
             <ion-col>
               <ion-row>
                   <ion-input [(ngModel)]="ingrediente.quantidade" class="max-w-10" type="number" [placeholder]="0" required></ion-input>
-        <ion-select [(ngModel)]="ingrediente.medida" [placeholder]="medidasIngrediente[0]">
-          <ion-select-option *ngFor="let medida of medidasIngrediente" [value]="medida">{{ medida }}</ion-select-option>
-        </ion-select>
+                  <ion-select [(ngModel)]="ingrediente.medida" [placeholder]="medidasIngrediente[0]">
+                    <ion-select-option *ngFor="let medida of medidasIngrediente" [value]="medida">{{ medida }}</ion-select-option>
+                  </ion-select>
               </ion-row>
 
               <ion-row>
@@ -88,7 +93,8 @@
               </ion-button>
             </ion-col>
           </ion-row>
-      </ion-item>
+        </ion-item>
+      </ion-reorder-group>
       <ion-button expand="full" (click)="addItem({ quantidade: null, medida: 'Colher de Café', ingrediente: '' }, receita.ingredientes)">Adicionar ingrediente</ion-button>
     </ion-card-content>
   </ion-card>
@@ -96,13 +102,16 @@
   <ion-card>
     <ion-card-content>
       <ion-label position="stacked">Utensílios (opcional)</ion-label>
+      <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event), receita.utensilios)">
         <ion-item *ngFor="let utensilio of receita.utensilios">
+          <ion-reorder slot="start"></ion-reorder>
           <ion-input [(ngModel)]="utensilio.quantidade" class="max-w-10" type="number" [placeholder]="0"></ion-input>
           <ion-input label="x" [(ngModel)]="utensilio.utensilio" placeholder="utensílio"></ion-input>
           <ion-button fill="clear" (click)="removeItem(utensilio.listIndex, receita.utensilios)">
             <ion-icon name="close"></ion-icon>
           </ion-button>
-      </ion-item>
+        </ion-item>
+      </ion-reorder-group>
       <ion-button expand="full" (click)="addItem({ quantidade: null, utensilio: '' }, receita.utensilios)">Adicionar Untensílio</ion-button>
     </ion-card-content>
   </ion-card>

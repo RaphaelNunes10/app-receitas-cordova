@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MedidaIngrediente, MedidaPorcao, PeriodoPreparo, Receita } from 'src/models/receita.interface';
 
 import { Camera } from '@capacitor/camera';
+import { ItemReorderEventDetail } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit',
@@ -22,11 +23,12 @@ export class EditPage {
       descricao: '',
       preparo: [
         {
-          passo: ''
+          listIndex: 0,
         }
       ],
       ingredientes: [
         {
+          listIndex: 0,
           quantidade: NaN,
           medida: 'Colher de Café',
           ingrediente: '',
@@ -77,11 +79,28 @@ export class EditPage {
   async addItem(object: any, list: any[]) {
     list.push(object)
 
+    list.forEach((item: { listIndex: number }, i: number) => {
+        item.listIndex = i
+    })
   }
 
   async removeItem(index: number, list: any[]) {
     list.splice(index, 1)
 
+    list.forEach((item: { listIndex: number }, i: number) => {
+      item.listIndex = i
+    })
+  }
+
+  handleReorder(ev: CustomEvent<ItemReorderEventDetail>, list: any[]) {
+    const [movedItem] = list.splice(ev.detail.from, 1)
+    list.splice(ev.detail.to, 0, movedItem)
+
+    list.forEach((item: { listIndex: number }, i: number) => {
+      item.listIndex = i
+    })
+
+    ev.detail.complete()
   }
 
   async addImagem() {
