@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { MedidaIngrediente, MedidaPorcao, PeriodoPreparo, Receita } from 'src/models/receita.interface';
+import { Component } from '@angular/core'
+import { MedidaIngrediente, MedidaPorcao, PeriodoPreparo, Receita } from 'src/models/receita.interface'
 
-import { Camera } from '@capacitor/camera';
-import { ItemReorderEventDetail } from '@ionic/angular';
+import { Camera } from '@capacitor/camera'
+import { ItemReorderEventDetail } from '@ionic/angular'
 
 @Component({
   selector: 'app-edit',
@@ -112,10 +112,10 @@ export class EditPage {
       })
 
       if (imagem.photos[0]) {
-        this.receita.imagens.push(imagem.photos[0].webPath);
+        this.receita.imagens.push(imagem.photos[0].webPath)
       }
     } catch (error) {
-      console.error('Error capturing image:', error);
+      console.error('Error capturing image:', error)
     }
   }
 }
