@@ -24,6 +24,7 @@ export class EditPage {
       preparo: [
         {
           listIndex: 0,
+          passo: '',
         }
       ],
       ingredientes: [
@@ -40,7 +41,7 @@ export class EditPage {
       },
       porcao: {
         quantidade: NaN,
-        medida: 'Unidade(s)'
+        medida: 'Unidade(s)',
       },
       utensilios: [],
       notasAdicionais: '',

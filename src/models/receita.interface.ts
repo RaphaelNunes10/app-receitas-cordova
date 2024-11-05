@@ -4,6 +4,7 @@ export type MedidaPorcao = 'Unidade(s)' | 'Pedaço(s)' | 'Fatia(s)' | 'g' | 'kg'
 
 interface Preparo {
   listIndex: number,
+  passo: string,
 }
 
 interface Ingrediente {
@@ -26,7 +27,7 @@ interface Porcao {
 interface Utensilio {
   listIndex: number,
   quantidade: number,
-  utensilio: string
+  utensilio: string,
 }
 
 export interface Receita {
@@ -40,5 +41,5 @@ export interface Receita {
   porcao: Porcao,
   utensilios: Utensilio[],
   notasAdicionais: string,
-  dataCriacao: Date | undefined
+  dataCriacao: Date | undefined,
 }
