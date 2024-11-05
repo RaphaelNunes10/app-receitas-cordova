@@ -27,25 +27,20 @@ export class EditPage {
       ],
       ingredientes: [
         {
-          quantidade: 0,
+          quantidade: NaN,
           medida: 'Colher de Café',
           ingrediente: '',
         }
       ],
       tempoPreparo: {
-        valor: 0,
+        valor: NaN,
         periodo: 'Segundo(s)',
       },
       porcao: {
-        quantidade: 0,
+        quantidade: NaN,
         medida: 'Unidade(s)'
       },
-      utensilios: [
-        {
-          quantidade: 0,
-          utensilio: ''
-        }
-      ],
+      utensilios: [],
       notasAdicionais: '',
       dataCriacao: undefined,
     }
@@ -77,6 +72,16 @@ export class EditPage {
       'L',
       'Pessoa(s)',
     ]
+  }
+
+  async addItem(object: any, list: any[]) {
+    list.push(object);
+
+  }
+
+  async removeItem(index: number, list: any[]) {
+    list.splice(index, 1);
+
   }
 
   async addImagem() {
