@@ -13,12 +13,12 @@
 
   <ion-card>
     <ion-card-content>
-      <ion-label position="stacked">Titulo</ion-label>
+      <ion-label position="stacked">Titulo <span class="text-blue-400">*</span></ion-label>
       <ion-item>
-        <ion-input [(ngModel)]="receita.titulo"></ion-input>
+        <ion-input [(ngModel)]="receita.titulo" placeholder="Minha Receita" required></ion-input>
       </ion-item>
 
-      <ion-label position="stacked">Imagem</ion-label>
+      <ion-label position="stacked">Imagem <span class="text-blue-400">*</span></ion-label>
       <ion-item>
         <ion-grid class="mx-0 px-0">
           <ion-row>
@@ -34,18 +34,18 @@
         </ion-grid>
       </ion-item>
 
-      <ion-label position="stacked">Descrição</ion-label>
+      <ion-label position="stacked">Descrição <span class="text-blue-400">*</span></ion-label>
       <ion-item>
-        <ion-textarea [(ngModel)]="receita.descricao"></ion-textarea>
+        <ion-textarea [(ngModel)]="receita.descricao" placeholder="Descrição da receita" required></ion-textarea>
       </ion-item>
     </ion-card-content>
   </ion-card>
 
   <ion-card>
     <ion-card-content>
-      <ion-label position="stacked">Preparo</ion-label>
+      <ion-label position="stacked">Preparo <span class="text-blue-400">*</span></ion-label>
       <ion-item *ngFor="let preparo of receita.preparo">
-        •&nbsp;<ion-input [(ngModel)]="preparo.passo"></ion-input>
+        •&nbsp;<ion-input [(ngModel)]="preparo.passo" required></ion-input>
       </ion-item>
       <ion-button expand="full">Adicionar passo</ion-button>
     </ion-card-content>
@@ -53,16 +53,16 @@
 
   <ion-card>
     <ion-card-content>
-      <ion-label position="stacked">Ingredientes</ion-label>
+      <ion-label position="stacked">Ingredientes <span class="text-blue-400">*</span></ion-label>
       <ion-item *ngFor="let ingrediente of receita.ingredientes">
-        <ion-input [(ngModel)]="ingrediente.quantidade" class="max-w-10" type="number" [placeholder]="0"></ion-input>
+                  <ion-input [(ngModel)]="ingrediente.quantidade" class="max-w-10" type="number" [placeholder]="0" required></ion-input>
         <ion-select [(ngModel)]="ingrediente.medida" [placeholder]="medidasIngrediente[0]">
           <ion-select-option *ngFor="let medida of medidasIngrediente" [value]="medida">{{ medida }}</ion-select-option>
         </ion-select>
         &nbsp;
         <ion-label class="h-full !flex items-center justify-center">de</ion-label>
         &nbsp;
-        <ion-input></ion-input>
+        <ion-input required></ion-input>
       </ion-item>
       <ion-button expand="full">Adicionar ingrediente</ion-button>
     </ion-card-content>
