@@ -22,14 +22,14 @@
       <ion-item>
         <ion-grid class="mx-0 px-0">
           <ion-row>
-            <ion-col class="relative" size="4" sizeMd="2" sizeLg="1" *ngFor="let imagem of receita.imagens; let i=index">
-              <ion-button class="absolute top-0 right-0 !flex items-center justify-center" fill="clear" (click)="removeItem(i, receita.imagens)">
-                <ion-icon class="text-red-600" name="trash"></ion-icon>
+            <ion-col class="relative" size="4" sizeMd="2" *ngFor="let imagem of receita.imagens; let i=index">
+              <ion-button color="primary" class="absolute top-0 right-0 !flex items-center justify-center" fill="clear" (click)="removeItem(i, receita.imagens)">
+                <ion-icon class="fill-red-600 text-white !stroke-[10px]" name="trash"></ion-icon>
               </ion-button>
-              <img [src]="imagem" class="w-[80px] h-[80px] md:w-[150px] md:h-[150px] m-0 bg-cover" />
+              <img [src]="imagem" class="w-full aspect-square object-cover" />
             </ion-col>
-            <ion-col size="4" sizeMd="2" sizeLg="1">
-              <ion-button expand="full" class="w-[80px] h-[80px] md:w-[150px] md:h-[150px] m-0" (click)="addImagem()">
+            <ion-col size="4" sizeMd="2">
+              <ion-button color="primary" expand="full" class="w-full aspect-square m-0" (click)="addImagem()">
                 <ion-icon name="add"></ion-icon>
               </ion-button>
             </ion-col>
