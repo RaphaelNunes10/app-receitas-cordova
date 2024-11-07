@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { MedidaIngrediente, MedidaPorcao, PeriodoPreparo, Receita } from 'src/models/receita.interface'
 
 import { Camera } from '@capacitor/camera'
-import { ItemReorderEventDetail } from '@ionic/angular'
+import { Platform, ItemReorderEventDetail } from '@ionic/angular'
 
 @Component({
   selector: 'app-edit',
@@ -10,12 +10,16 @@ import { ItemReorderEventDetail } from '@ionic/angular'
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage {
+  isDesktop: boolean
+
   receita: Receita
   medidasIngrediente: MedidaIngrediente[]
   periodosPreparo: PeriodoPreparo[]
   medidasPorcao: MedidaPorcao[]
 
-  constructor() {
+  constructor(private platform: Platform) {
+  this.isDesktop = this.platform.is('desktop')
+
    this.receita = {
       id: '',
       titulo: '',

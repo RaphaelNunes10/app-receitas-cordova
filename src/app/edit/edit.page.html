@@ -46,6 +46,67 @@
 
   <ion-card>
     <ion-card-content>
+      <ion-label position="stacked">Ingredientes *</ion-label>
+      <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event), receita.ingredientes)">
+        <ion-item *ngFor="let ingrediente of receita.ingredientes">
+          <ion-reorder slot="start"></ion-reorder>
+          <ng-container *ngIf="isDesktop; else mobile">
+            <ion-row class="w-full">
+              <ion-col size="1">
+                <ion-input [(ngModel)]="ingrediente.quantidade" type="number" [placeholder]="0" required></ion-input>
+              </ion-col>
+
+              <ion-col size="3" sizeLg="2">
+                <ion-select [(ngModel)]="ingrediente.medida" [placeholder]="medidasIngrediente[0]">
+                  <ion-select-option *ngFor="let medida of medidasIngrediente" [value]="medida">{{ medida }}</ion-select-option>
+                </ion-select>
+              </ion-col>
+
+              <ion-col>
+                <ion-input label="de" [(ngModel)]="ingrediente.ingrediente" placeholder="ingrediente" required></ion-input>
+              </ion-col>
+
+              <ion-col size="2" sizeLg="1">
+                <ion-button color="primary" class="w-full h-full !flex items-center justify-center" fill="clear" (click)="removeItem(ingrediente.listIndex, receita.ingredientes)" *ngIf="ingrediente.listIndex > 0">
+                  <ion-icon name="close"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ng-container>
+          <ng-template #mobile>
+            <ion-row class="w-full">
+              <ion-col>
+                <ion-row>
+                    <ion-col>
+                      <ion-input [(ngModel)]="ingrediente.quantidade" class="max-w-10" type="number" [placeholder]="0" required></ion-input>
+                    </ion-col>
+                    <ion-col>
+                      <ion-select [(ngModel)]="ingrediente.medida" [placeholder]="medidasIngrediente[0]">
+                        <ion-select-option *ngFor="let medida of medidasIngrediente" [value]="medida">{{ medida }}</ion-select-option>
+                      </ion-select>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                  <ion-input label="de" [(ngModel)]="ingrediente.ingrediente" placeholder="ingrediente" required></ion-input>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size="3">
+                <ion-button color="primary" class="w-full h-full !flex items-center justify-center" fill="clear" (click)="removeItem(ingrediente.listIndex, receita.ingredientes)" *ngIf="ingrediente.listIndex > 0">
+                  <ion-icon name="close"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ng-template>
+        </ion-item>
+      </ion-reorder-group>
+      <ion-button color="primary" expand="full" (click)="addItem({ quantidade: null, medida: 'Colher de Café', ingrediente: '' }, receita.ingredientes)">Adicionar ingrediente</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
       <ion-label position="stacked">Preparo *</ion-label>
       <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event), receita.preparo)">
         <ion-item *ngFor="let preparo of receita.preparo">
@@ -55,47 +116,15 @@
               <ion-textarea label="•" [(ngModel)]="preparo.passo" placeholder="{{ preparo.listIndex + 1 }}º passo" required></ion-textarea>
             </ion-col>
 
-            <ion-col size="2">
-              <ion-button class="w-full h-full !flex items-center justify-center" fill="clear" (click)="removeItem(preparo.listIndex, receita.preparo)" *ngIf="preparo.listIndex > 0">
+            <ion-col size="3" sizeMd="2" sizeLg="1">
+              <ion-button color="primary" class="w-full h-full !flex items-center justify-center" fill="clear" (click)="removeItem(preparo.listIndex, receita.preparo)" *ngIf="preparo.listIndex > 0">
                 <ion-icon name="close"></ion-icon>
               </ion-button>
             </ion-col>
           </ion-row>
         </ion-item>
       </ion-reorder-group>
-      <ion-button expand="full" (click)="addItem({ passo: '' }, receita.preparo)">Adicionar passo</ion-button>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-content>
-      <ion-label position="stacked">Ingredientes *</ion-label>
-      <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event), receita.ingredientes)">
-        <ion-item *ngFor="let ingrediente of receita.ingredientes">
-          <ion-reorder slot="start"></ion-reorder>
-          <ion-row class="w-full">
-            <ion-col>
-              <ion-row>
-                  <ion-input [(ngModel)]="ingrediente.quantidade" class="max-w-10" type="number" [placeholder]="0" required></ion-input>
-                  <ion-select [(ngModel)]="ingrediente.medida" [placeholder]="medidasIngrediente[0]">
-                    <ion-select-option *ngFor="let medida of medidasIngrediente" [value]="medida">{{ medida }}</ion-select-option>
-                  </ion-select>
-              </ion-row>
-
-              <ion-row>
-                <ion-input label="de" [(ngModel)]="ingrediente.ingrediente" placeholder="ingrediente" required></ion-input>
-              </ion-row>
-            </ion-col>
-
-            <ion-col size="2">
-              <ion-button class="w-full h-full !flex items-center justify-center" fill="clear" (click)="removeItem(ingrediente.listIndex, receita.ingredientes)" *ngIf="ingrediente.listIndex > 0">
-                <ion-icon name="close" size="large"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-item>
-      </ion-reorder-group>
-      <ion-button expand="full" (click)="addItem({ quantidade: null, medida: 'Colher de Café', ingrediente: '' }, receita.ingredientes)">Adicionar ingrediente</ion-button>
+      <ion-button color="primary" expand="full" (click)="addItem({ passo: '' }, receita.preparo)">Adicionar passo</ion-button>
     </ion-card-content>
   </ion-card>
 
@@ -107,12 +136,12 @@
           <ion-reorder slot="start"></ion-reorder>
           <ion-input [(ngModel)]="utensilio.quantidade" class="max-w-10" type="number" [placeholder]="0"></ion-input>
           <ion-input label="x" [(ngModel)]="utensilio.utensilio" placeholder="utensílio"></ion-input>
-          <ion-button fill="clear" (click)="removeItem(utensilio.listIndex, receita.utensilios)">
+          <ion-button color="primary" fill="clear" (click)="removeItem(utensilio.listIndex, receita.utensilios)">
             <ion-icon name="close"></ion-icon>
           </ion-button>
         </ion-item>
       </ion-reorder-group>
-      <ion-button expand="full" (click)="addItem({ quantidade: null, utensilio: '' }, receita.utensilios)">Adicionar Untensílio</ion-button>
+      <ion-button color="primary" expand="full" (click)="addItem({ quantidade: null, utensilio: '' }, receita.utensilios)">Adicionar Untensílio</ion-button>
     </ion-card-content>
   </ion-card>
 
@@ -120,7 +149,9 @@
     <ion-card-content>
       <ion-label position="stacked">Tempo Preparo (opcional)</ion-label>
       <ion-item>
-        <ion-input type="number" [(ngModel)]="receita.tempoPreparo.valor" [placeholder]="0"></ion-input>
+        <ion-input type="number" [(ngModel)]="receita.tempoPreparo.valor" [placeholder]="0">
+          <ion-icon slot="start" name="timer-outline"></ion-icon>
+        </ion-input>
         <ion-select [(ngModel)]="receita.tempoPreparo.periodo" [placeholder]="periodosPreparo[0]">
           <ion-select-option *ngFor="let periodo of periodosPreparo" [value]="periodo">{{ periodo }}</ion-select-option>
         </ion-select>
@@ -128,7 +159,9 @@
 
       <ion-label position="stacked">Porção (opcional)</ion-label>
       <ion-item>
-        <ion-input type="number" [(ngModel)]="receita.porcao.quantidade" [placeholder]="0"></ion-input>
+        <ion-input type="number" [(ngModel)]="receita.porcao.quantidade" [placeholder]="0">
+          <ion-icon slot="start" name="restaurant-outline"></ion-icon>
+        </ion-input>
         <ion-select [(ngModel)]="receita.porcao.medida" [placeholder]="medidasPorcao[0]">
           <ion-select-option *ngFor="let medida of medidasPorcao" [value]="medida">{{ medida }}</ion-select-option>
         </ion-select>
@@ -136,8 +169,8 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card class="bg-transparent !flex justify-center">
-    <ion-button shape="round">
+  <ion-card class="bg-transparent shadow-none !flex justify-center">
+    <ion-button color="primary" shape="round">
       Adicionar receita
     </ion-button>
   </ion-card>
