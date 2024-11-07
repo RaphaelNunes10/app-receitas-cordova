@@ -25,18 +25,19 @@ export class EditPage {
       titulo: '',
       imagens: [],
       descricao: '',
-      preparo: [
-        {
-          listIndex: 0,
-          passo: '',
-        }
-      ],
       ingredientes: [
         {
           listIndex: 0,
           quantidade: NaN,
           medida: 'Colher de Café',
           ingrediente: '',
+        }
+      ],
+      utensilios: [],
+      preparo: [
+        {
+          listIndex: 0,
+          passo: '',
         }
       ],
       tempoPreparo: {
@@ -47,8 +48,6 @@ export class EditPage {
         quantidade: NaN,
         medida: 'Unidade(s)',
       },
-      utensilios: [],
-      notasAdicionais: '',
       dataCriacao: undefined,
     }
 

@@ -107,6 +107,23 @@
 
   <ion-card>
     <ion-card-content>
+      <ion-label position="stacked">Utensílios (opcional)</ion-label>
+      <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event), receita.utensilios)">
+        <ion-item *ngFor="let utensilio of receita.utensilios">
+          <ion-reorder slot="start"></ion-reorder>
+          <ion-input [(ngModel)]="utensilio.quantidade" class="max-w-10" type="number" [placeholder]="0"></ion-input>
+          <ion-input label="x" [(ngModel)]="utensilio.utensilio" placeholder="utensílio"></ion-input>
+          <ion-button color="primary" fill="clear" (click)="removeItem(utensilio.listIndex, receita.utensilios)">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-reorder-group>
+      <ion-button color="primary" expand="full" (click)="addItem({ quantidade: null, utensilio: '' }, receita.utensilios)">Adicionar Untensílio</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
       <ion-label position="stacked">Preparo *</ion-label>
       <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event), receita.preparo)">
         <ion-item *ngFor="let preparo of receita.preparo">
@@ -125,23 +142,6 @@
         </ion-item>
       </ion-reorder-group>
       <ion-button color="primary" expand="full" (click)="addItem({ passo: '' }, receita.preparo)">Adicionar passo</ion-button>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-content>
-      <ion-label position="stacked">Utensílios (opcional)</ion-label>
-      <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event), receita.utensilios)">
-        <ion-item *ngFor="let utensilio of receita.utensilios">
-          <ion-reorder slot="start"></ion-reorder>
-          <ion-input [(ngModel)]="utensilio.quantidade" class="max-w-10" type="number" [placeholder]="0"></ion-input>
-          <ion-input label="x" [(ngModel)]="utensilio.utensilio" placeholder="utensílio"></ion-input>
-          <ion-button color="primary" fill="clear" (click)="removeItem(utensilio.listIndex, receita.utensilios)">
-            <ion-icon name="close"></ion-icon>
-          </ion-button>
-        </ion-item>
-      </ion-reorder-group>
-      <ion-button color="primary" expand="full" (click)="addItem({ quantidade: null, utensilio: '' }, receita.utensilios)">Adicionar Untensílio</ion-button>
     </ion-card-content>
   </ion-card>
 
