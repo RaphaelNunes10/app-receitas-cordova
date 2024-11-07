@@ -34,8 +34,25 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+// @import "@ionic/angular/css/palettes/dark.system.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --ion-color-primary: #A0522D;
+}
+
+.md, .ios {
+  --background: #FFFFFF;
+  --color: #502916;
+}
+
+ion-content {
+  --background: #F5F5DC !important;
+}
+
+ion-button {
+  --color: #F5F5DC !important;
+}
