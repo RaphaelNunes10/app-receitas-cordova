@@ -13,12 +13,12 @@
 
   <ion-card>
     <ion-card-content>
-      <ion-label position="stacked">Titulo <span class="text-blue-400">*</span></ion-label>
+      <ion-label position="stacked">Titulo *</ion-label>
       <ion-item>
         <ion-input [(ngModel)]="receita.titulo" placeholder="Minha Receita" required></ion-input>
       </ion-item>
 
-      <ion-label position="stacked">Imagem <span class="text-blue-400">*</span></ion-label>
+      <ion-label position="stacked">Imagem *</ion-label>
       <ion-item>
         <ion-grid class="mx-0 px-0">
           <ion-row>
@@ -37,7 +37,7 @@
         </ion-grid>
       </ion-item>
 
-      <ion-label position="stacked">Descrição <span class="text-blue-400">*</span></ion-label>
+      <ion-label position="stacked">Descrição *</ion-label>
       <ion-item>
         <ion-textarea [(ngModel)]="receita.descricao" placeholder="Descrição da receita" required></ion-textarea>
       </ion-item>
@@ -46,7 +46,7 @@
 
   <ion-card>
     <ion-card-content>
-      <ion-label position="stacked">Preparo <span class="text-blue-400">*</span></ion-label>
+      <ion-label position="stacked">Preparo *</ion-label>
       <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event), receita.preparo)">
         <ion-item *ngFor="let preparo of receita.preparo">
           <ion-reorder slot="start"></ion-reorder>
@@ -69,7 +69,7 @@
 
   <ion-card>
     <ion-card-content>
-      <ion-label position="stacked">Ingredientes <span class="text-blue-400">*</span></ion-label>
+      <ion-label position="stacked">Ingredientes *</ion-label>
       <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event), receita.ingredientes)">
         <ion-item *ngFor="let ingrediente of receita.ingredientes">
           <ion-reorder slot="start"></ion-reorder>
