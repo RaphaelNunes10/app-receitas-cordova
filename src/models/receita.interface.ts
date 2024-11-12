@@ -1,5 +1,4 @@
 export type MedidaIngrediente = 'Colher de Café' | 'Colher de Chá' | 'Colher de Sobremesa' | 'Colher de Sopa' | 'mg' | 'g' | 'Kg' | 'ml' | 'L'
-export type PeriodoPreparo = 'Segundo(s)' | 'Minuto(s)' | 'Hora(s)'
 export type MedidaPorcao = 'Unidade(s)' | 'Pedaço(s)' | 'Fatia(s)' | 'g' | 'kg' | 'L' | 'Pessoa(s)'
 
 interface Ingrediente {
@@ -22,8 +21,7 @@ interface Preparo {
 
 
 interface TempoPreparo {
-  valor: number,
-  periodo: PeriodoPreparo,
+  valor: string,
 }
 
 interface Porcao {

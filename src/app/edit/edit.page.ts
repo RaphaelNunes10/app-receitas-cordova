@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { MedidaIngrediente, MedidaPorcao, PeriodoPreparo, Receita } from 'src/models/receita.interface'
+import { MedidaIngrediente, MedidaPorcao, Receita } from 'src/models/receita.interface'
 
 import { Camera } from '@capacitor/camera'
 import { Platform, ItemReorderEventDetail } from '@ionic/angular'
@@ -14,7 +14,6 @@ export class EditPage {
 
   receita: Receita
   medidasIngrediente: MedidaIngrediente[]
-  periodosPreparo: PeriodoPreparo[]
   medidasPorcao: MedidaPorcao[]
 
   constructor(private platform: Platform) {
@@ -41,8 +40,7 @@ export class EditPage {
         }
       ],
       tempoPreparo: {
-        valor: NaN,
-        periodo: 'Segundo(s)',
+        valor: '',
       },
       porcao: {
         quantidade: NaN,
@@ -61,12 +59,6 @@ export class EditPage {
       'Kg',
       'ml',
       'L',
-    ]
-
-    this.periodosPreparo = [
-      'Segundo(s)',
-      'Minuto(s)',
-      'Hora(s)',
     ]
 
     this.medidasPorcao = [
