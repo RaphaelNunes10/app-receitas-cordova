@@ -1,12 +1,11 @@
 export const TempoPreparoUpgradeStatements = [
     {
-        toVersion: 1,
-        statements: [
-            `CREATE TABLE IF NOT EXISTS tempos_preparo (
+      toVersion: 1,
+      statements: [
+          `CREATE TABLE IF NOT EXISTS tempos_preparo (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            valor INTEGER NOT NULL,
-            periodo TEXT NOT NULL
-            );`,
-        ],
+            valor TEXT,
+          );`,
+      ],
     },
 ]
