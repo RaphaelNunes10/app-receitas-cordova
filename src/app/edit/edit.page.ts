@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
+
+import { Camera } from '@capacitor/camera';
+import { Platform, ItemReorderEventDetail } from '@ionic/angular';
+
+import { StorageService } from '../services/storage.service';
 import {
   MedidaIngrediente,
   MedidaPorcao,
   Receita,
 } from 'src/app/models/receita';
 
-import { Camera } from '@capacitor/camera';
-import { Platform, ItemReorderEventDetail } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit',
@@ -20,7 +23,7 @@ export class EditPage {
   medidasIngrediente: MedidaIngrediente[];
   medidasPorcao: MedidaPorcao[];
 
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform, private storage: StorageService) {
     this.isDesktop = this.platform.is('desktop');
 
     this.receita = {
@@ -110,10 +113,62 @@ export class EditPage {
       });
 
       if (imagem.photos[0]) {
-        this.receita.imagens.push(imagem.photos[0].webPath);
+        this.receita.imagens.push({
+          listIndex: NaN,
+          url: imagem.photos[0].webPath,
+        });
+
+        this.receita.imagens.forEach(
+          (imagem: { listIndex: number }, i: number) => {
+            imagem.listIndex = i;
+          },
+        );
       }
     } catch (error) {
       console.error('Error capturing image:', error);
     }
+  }
+
+  clearReceita() {
+    this.receita = {
+      id: '',
+      listIndex: NaN,
+      titulo: '',
+      imagens: [],
+      descricao: '',
+      ingredientes: [
+        {
+          listIndex: 0,
+          quantidade: NaN,
+          medida: 'Colher de Café',
+          ingrediente: '',
+        },
+      ],
+      utensilios: [],
+      preparo: [
+        {
+          listIndex: 0,
+          passo: '',
+        },
+      ],
+      tempoPreparo: '',
+      porcao: {
+        quantidade: NaN,
+        medida: 'Unidade(s)',
+      },
+      dataCriacao: undefined,
+    };
+  }
+
+  async createReceita() {
+    await this.storage.addReceita(this.receita)
+    this.clearReceita();
+  }
+
+  // updateReceita(receita: Receita) {
+  // }
+
+  deleteReceita(receita: Receita) {
+      this.storage.deleteReceitaById(receita.id.toString())
   }
 }

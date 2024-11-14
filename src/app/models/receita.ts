@@ -8,6 +8,7 @@ export type MedidaIngrediente =
   | 'Kg'
   | 'ml'
   | 'L';
+
 export type MedidaPorcao =
   | 'Unidade(s)'
   | 'Pedaço(s)'
@@ -17,25 +18,30 @@ export type MedidaPorcao =
   | 'L'
   | 'Pessoa(s)';
 
-interface Ingrediente {
+export interface Imagem {
+  listIndex: number;
+  url: string;
+}
+
+export interface Ingrediente {
   listIndex: number;
   quantidade: number;
   medida: MedidaIngrediente;
   ingrediente: string;
 }
 
-interface Utensilio {
+export interface Utensilio {
   listIndex: number;
   quantidade: number;
   utensilio: string;
 }
 
-interface Preparo {
+export interface Preparo {
   listIndex: number;
   passo: string;
 }
 
-interface Porcao {
+export interface Porcao {
   quantidade: number;
   medida: MedidaPorcao;
 }
@@ -44,7 +50,7 @@ export interface Receita {
   id: string;
   listIndex: number;
   titulo: string;
-  imagens: string[];
+  imagens: Imagem[];
   descricao: string;
   ingredientes: Ingrediente[];
   utensilios: Utensilio[];
