@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Receita } from 'src/models/receita.interface';
+import { Receita } from 'src/app/models/receita';
 
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
 
@@ -12,7 +12,7 @@ export class HomePage {
   receitas: Receita[];
 
   constructor() {
-    this.receitas = []
+    this.receitas = [];
   }
 
   onIonInfinite(ev: InfiniteScrollCustomEvent) {

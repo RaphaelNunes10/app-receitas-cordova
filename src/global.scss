@@ -41,18 +41,19 @@
 @tailwind utilities;
 
 :root {
-  --ion-color-primary: #A0522D;
+  --ion-color-primary: #a0522d;
 }
 
-.md, .ios {
-  --background: #FFFFFF;
+.md,
+.ios {
+  --background: #ffffff;
   --color: #502916;
 }
 
 ion-content {
-  --background: #F5F5DC !important;
+  --background: #f5f5dc !important;
 }
 
 ion-button {
-  --color: #F5F5DC !important;
+  --color: #f5f5dc !important;
 }

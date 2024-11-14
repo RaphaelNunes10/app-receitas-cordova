@@ -1,8 +1,12 @@
-import { Component } from '@angular/core'
-import { MedidaIngrediente, MedidaPorcao, Receita } from 'src/models/receita.interface'
+import { Component } from '@angular/core';
+import {
+  MedidaIngrediente,
+  MedidaPorcao,
+  Receita,
+} from 'src/app/models/receita';
 
-import { Camera } from '@capacitor/camera'
-import { Platform, ItemReorderEventDetail } from '@ionic/angular'
+import { Camera } from '@capacitor/camera';
+import { Platform, ItemReorderEventDetail } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit',
@@ -10,16 +14,16 @@ import { Platform, ItemReorderEventDetail } from '@ionic/angular'
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage {
-  isDesktop: boolean
+  isDesktop: boolean;
 
-  receita: Receita
-  medidasIngrediente: MedidaIngrediente[]
-  medidasPorcao: MedidaPorcao[]
+  receita: Receita;
+  medidasIngrediente: MedidaIngrediente[];
+  medidasPorcao: MedidaPorcao[];
 
   constructor(private platform: Platform) {
-  this.isDesktop = this.platform.is('desktop')
+    this.isDesktop = this.platform.is('desktop');
 
-   this.receita = {
+    this.receita = {
       id: '',
       titulo: '',
       imagens: [],
@@ -30,14 +34,14 @@ export class EditPage {
           quantidade: NaN,
           medida: 'Colher de Café',
           ingrediente: '',
-        }
+        },
       ],
       utensilios: [],
       preparo: [
         {
           listIndex: 0,
           passo: '',
-        }
+        },
       ],
       tempoPreparo: {
         valor: '',
@@ -47,7 +51,7 @@ export class EditPage {
         medida: 'Unidade(s)',
       },
       dataCriacao: undefined,
-    }
+    };
 
     this.medidasIngrediente = [
       'Colher de Café',
@@ -59,7 +63,7 @@ export class EditPage {
       'Kg',
       'ml',
       'L',
-    ]
+    ];
 
     this.medidasPorcao = [
       'Unidade(s)',
@@ -69,34 +73,34 @@ export class EditPage {
       'kg',
       'L',
       'Pessoa(s)',
-    ]
+    ];
   }
 
   async addItem(object: any, list: any[]) {
-    list.push(object)
+    list.push(object);
 
     list.forEach((item: { listIndex: number }, i: number) => {
-        item.listIndex = i
-    })
+      item.listIndex = i;
+    });
   }
 
   async removeItem(index: number, list: any[]) {
-    list.splice(index, 1)
+    list.splice(index, 1);
 
     list.forEach((item: { listIndex: number }, i: number) => {
-      item.listIndex = i
-    })
+      item.listIndex = i;
+    });
   }
 
   handleReorder(ev: CustomEvent<ItemReorderEventDetail>, list: any[]) {
-    const [movedItem] = list.splice(ev.detail.from, 1)
-    list.splice(ev.detail.to, 0, movedItem)
+    const [movedItem] = list.splice(ev.detail.from, 1);
+    list.splice(ev.detail.to, 0, movedItem);
 
     list.forEach((item: { listIndex: number }, i: number) => {
-      item.listIndex = i
-    })
+      item.listIndex = i;
+    });
 
-    ev.detail.complete()
+    ev.detail.complete();
   }
 
   async addImagem() {
@@ -104,13 +108,13 @@ export class EditPage {
       const imagem = await Camera.pickImages({
         quality: 90,
         limit: 1,
-      })
+      });
 
       if (imagem.photos[0]) {
-        this.receita.imagens.push(imagem.photos[0].webPath)
+        this.receita.imagens.push(imagem.photos[0].webPath);
       }
     } catch (error) {
-      console.error('Error capturing image:', error)
+      console.error('Error capturing image:', error);
     }
   }
 }
