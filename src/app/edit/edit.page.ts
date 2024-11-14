@@ -25,6 +25,7 @@ export class EditPage {
 
     this.receita = {
       id: '',
+      listIndex: NaN,
       titulo: '',
       imagens: [],
       descricao: '',
@@ -43,9 +44,7 @@ export class EditPage {
           passo: '',
         },
       ],
-      tempoPreparo: {
-        valor: '',
-      },
+      tempoPreparo: '',
       porcao: {
         quantidade: NaN,
         medida: 'Unidade(s)',
