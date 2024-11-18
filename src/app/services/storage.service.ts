@@ -157,7 +157,29 @@ export class StorageService {
     await this.getReceitas();
   }
 
-  // async updateReceitaById(id: string, receita: Receita) {}
+  async updateReceitaById(id: string, receita: Receita) {
+    const sql = `
+      UPDATE receitas
+      SET
+        list_index = ?,
+        titulo = ?,
+        descricao = ?,
+        tempo_preparo = ?,
+        porcao_quantidade = ?,
+        porcao_medida = ?
+      WHERE id = ?
+    `;
+    await this.db.run(sql, [
+      receita.listIndex,
+      receita.titulo,
+      receita.descricao,
+      receita.tempoPreparo,
+      receita.porcao.quantidade,
+      receita.porcao.medida,
+      id,
+    ]);
+    await this.getReceitas();
+  }
 
   async deleteReceitaById(id: string) {
     const sql = `
@@ -185,7 +207,15 @@ export class StorageService {
     await this.getImagens();
   }
 
-  // async updateImagemById(id: string, imagem: Imagem) {}
+  async updateImagemById(id: string, imagem: Imagem) {
+    const sql = `
+      UPDATE imagens
+      SET url = ?
+      WHERE id = ?
+    `;
+    await this.db.run(sql, [imagem.url, id]);
+    await this.getImagens();
+  }
 
   async deleteImagemById(id: string) {
     const sql = `
@@ -219,7 +249,25 @@ export class StorageService {
     await this.getIngredientes();
   }
 
-  // async updateIngredienteById(id: string, ingrediente: Ingrediente) {}
+  async updateIngredienteById(id: string, ingrediente: Ingrediente) {
+    const sql = `
+      UPDATE ingredientes
+      SET
+        list_index = ?,
+        quantidade = ?,
+        medida = ?,
+        ingrediente = ?
+      WHERE id = ?
+    `;
+    await this.db.run(sql, [
+      ingrediente.listIndex,
+      ingrediente.quantidade,
+      ingrediente.medida,
+      ingrediente.ingrediente,
+      id,
+    ]);
+    await this.getIngredientes();
+  }
 
   async deleteIngredienteById(id: string) {
     const sql = `
@@ -252,7 +300,23 @@ export class StorageService {
     await this.getUtensilios();
   }
 
-  // async updateUtensilioById(id: string, utensilio: Utensilio) {}
+  async updateUtensilioById(id: string, utensilio: Utensilio) {
+    const sql = `
+      UPDATE utensilios
+      SET
+        list_index = ?,
+        quantidade = ?,
+        utensilio = ?
+      WHERE id = ?
+    `;
+    await this.db.run(sql, [
+      utensilio.listIndex,
+      utensilio.quantidade,
+      utensilio.utensilio,
+      id,
+    ]);
+    await this.getUtensilios();
+  }
 
   async deleteUtensilioById(id: string) {
     const sql = `
@@ -280,7 +344,17 @@ export class StorageService {
     await this.getPreparos();
   }
 
-  // async updatePreparoById(id: string, preparo: Preparo) {}
+  async updatePreparoById(id: string, preparo: Preparo) {
+    const sql = `
+      UPDATE preparos
+      SET
+        list_index = ?,
+        passo = ?
+      WHERE id = ?
+    `;
+    await this.db.run(sql, [preparo.listIndex, preparo.passo, id]);
+    await this.getPreparos();
+  }
 
   async deletePreparoById(id: string) {
     const sql = `
