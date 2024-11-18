@@ -14,7 +14,9 @@ import {
 } from '../models/receita';
 import { ReceitaUpgradeStatements } from '../upgrades/receita.upgrade.statements';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class StorageService {
   private databaseName: string = '';
   private versionUpgrades;

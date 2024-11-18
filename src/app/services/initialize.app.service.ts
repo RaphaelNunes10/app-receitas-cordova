@@ -4,7 +4,9 @@ import { SQLiteService } from './sqlite.service';
 import { StorageService } from './storage.service';
 import { Toast } from '@capacitor/toast';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class InitializeAppService {
   isAppInit: boolean = false;
   platform!: string;
