@@ -26,20 +26,22 @@ export class HomePage {
 
   ngOnInit() {
     try {
-      this.storage.receitaState().pipe(
-          switchMap(res => {
-          if (res) {
+      this.storage
+        .receitaState()
+        .pipe(
+          switchMap((res) => {
+            if (res) {
               return this.storage.fetchReceitas();
-          } else {
+            } else {
               return of([]); // Return an empty array when res is false
-          }
-          })
-      ).subscribe(data => {
+            }
+          }),
+        )
+        .subscribe((data) => {
           this.receitas = data; // Update the receita list when the data changes
-      });
-
-      } catch(err) {
+        });
+    } catch (err) {
       throw new Error(`Error: ${err}`);
-      }
+    }
   }
 }

@@ -10,7 +10,6 @@ import {
   Receita,
 } from 'src/app/models/receita';
 
-
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.page.html',
@@ -23,7 +22,10 @@ export class EditPage {
   medidasIngrediente: MedidaIngrediente[];
   medidasPorcao: MedidaPorcao[];
 
-  constructor(private platform: Platform, private storage: StorageService) {
+  constructor(
+    private platform: Platform,
+    private storage: StorageService,
+  ) {
     this.isDesktop = this.platform.is('desktop');
 
     this.receita = {
@@ -161,7 +163,7 @@ export class EditPage {
   }
 
   async createReceita() {
-    await this.storage.addReceita(this.receita)
+    await this.storage.addReceita(this.receita);
     this.clearReceita();
   }
 
@@ -169,6 +171,6 @@ export class EditPage {
   // }
 
   deleteReceita(receita: Receita) {
-      this.storage.deleteReceitaById(receita.id.toString())
+    this.storage.deleteReceitaById(receita.id.toString());
   }
 }
