@@ -198,12 +198,12 @@ export class StorageService {
     this.isImagemReady.next(true);
   }
 
-  async addImagem(imagem: Imagem) {
+  async addImagem(imagem: Imagem, receitaId: number) {
     const sql = `
       INSERT INTO imagens
       VALUES (?, ?);
     `;
-    await this.db.run(sql, [imagem.listIndex, imagem.url]);
+    await this.db.run(sql, [imagem.url, receitaId]);
     await this.getImagens();
   }
 
@@ -235,16 +235,17 @@ export class StorageService {
     this.isIngredienteReady.next(true);
   }
 
-  async addIngredientes(ingrediente: Ingrediente) {
+  async addIngredientes(ingrediente: Ingrediente, receitaId: number) {
     const sql = `
       INSERT INTO ingredientes
-      VALUES (?, ?, ?, ?);
+      VALUES (?, ?, ?, ?, ?);
     `;
     await this.db.run(sql, [
       ingrediente.listIndex,
       ingrediente.quantidade,
       ingrediente.medida,
       ingrediente.ingrediente,
+      receitaId
     ]);
     await this.getIngredientes();
   }
@@ -281,21 +282,22 @@ export class StorageService {
   // Utensilio
   async getUtensilios() {
     const utensilios: Utensilio[] = (
-      await this.db.query(`SELECT * FROM utensilio;`)
+      await this.db.query(`SELECT * FROM utensilios;`)
     ).values as Utensilio[];
     this.utensilioList.next(utensilios);
     this.isUtensilioReady.next(true);
   }
 
-  async addUtensilios(utensilio: Utensilio) {
+  async addUtensilios(utensilio: Utensilio, receitaId: number) {
     const sql = `
       INSERT INTO utensilios
-      VALUES (?, ?, ?);
+      VALUES (?, ?, ?, ?);
     `;
     await this.db.run(sql, [
       utensilio.listIndex,
       utensilio.quantidade,
       utensilio.utensilio,
+      receitaId
     ]);
     await this.getUtensilios();
   }
@@ -329,18 +331,22 @@ export class StorageService {
 
   // Preparo
   async getPreparos() {
-    const preparos: Preparo[] = (await this.db.query(`SELECT * FROM preparo;`))
+    const preparos: Preparo[] = (await this.db.query(`SELECT * FROM preparos;`))
       .values as Preparo[];
     this.preparoList.next(preparos);
     this.isPreparoReady.next(true);
   }
 
-  async addPreparos(preparo: Preparo) {
+  async addPreparos(preparo: Preparo, receitaId: number) {
     const sql = `
       INSERT INTO preparos
-      VALUES (?, ?);
+      VALUES (?, ?, ?);
     `;
-    await this.db.run(sql, [preparo.listIndex, preparo.passo]);
+    await this.db.run(sql, [
+      preparo.listIndex,
+      preparo.passo,
+      receitaId
+    ]);
     await this.getPreparos();
   }
 
