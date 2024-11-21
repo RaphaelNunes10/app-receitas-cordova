@@ -12,7 +12,7 @@
   </ion-header>
 
   <ion-list *ngIf="receitas.length > 0">
-    <ion-item *ngFor="let receita of receitas; let index">
+    <ion-item *ngFor="let receita of receitas">
       <ion-card>
         <ion-card-header>
           <ion-card-title>{{ receita.titulo }}</ion-card-title>
