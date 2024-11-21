@@ -72,5 +72,8 @@
     "typescript": "~5.4.0",
     "vm-browserify": "^1.1.2"
   },
+  "browser": {
+    "crypto": false
+  },
   "description": "An Ionic project"
 }
