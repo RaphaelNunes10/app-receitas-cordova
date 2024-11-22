@@ -8,6 +8,7 @@ import {
   MedidaPorcao,
   Receita,
 } from 'src/app/models/receita';
+import { ReceitaService } from '../services/receita.service';
 
 @Component({
   selector: 'app-edit',
@@ -21,7 +22,7 @@ export class EditPage {
   medidasIngrediente: MedidaIngrediente[];
   medidasPorcao: MedidaPorcao[];
 
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform, private receitaService: ReceitaService) {
     this.isDesktop = this.platform.is('desktop');
 
     this.receita = {
@@ -156,5 +157,9 @@ export class EditPage {
       },
       dataCriacao: undefined,
     };
+  }
+
+  addReceita() {
+    this.receitaService.createReceita(this.receita);
   }
 }
