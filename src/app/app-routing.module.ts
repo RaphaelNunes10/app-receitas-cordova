@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-export const routes: Routes = [
+const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>

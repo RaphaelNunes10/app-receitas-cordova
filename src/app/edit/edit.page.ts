@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { Camera } from '@capacitor/camera';
 import { Platform, ItemReorderEventDetail } from '@ionic/angular';
 
-import { StorageService } from '../services/storage.service';
 import {
   MedidaIngrediente,
   MedidaPorcao,
@@ -22,10 +21,7 @@ export class EditPage {
   medidasIngrediente: MedidaIngrediente[];
   medidasPorcao: MedidaPorcao[];
 
-  constructor(
-    private platform: Platform,
-    private storage: StorageService,
-  ) {
+  constructor(private platform: Platform) {
     this.isDesktop = this.platform.is('desktop');
 
     this.receita = {
@@ -160,17 +156,5 @@ export class EditPage {
       },
       dataCriacao: undefined,
     };
-  }
-
-  async createReceita() {
-    await this.storage.addReceita(this.receita);
-    this.clearReceita();
-  }
-
-  // updateReceita(receita: Receita) {
-  // }
-
-  deleteReceita(receita: Receita) {
-    this.storage.deleteReceitaById(receita.id.toString());
   }
 }

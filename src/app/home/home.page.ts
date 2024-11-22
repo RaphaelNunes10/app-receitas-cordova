@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { of, switchMap } from 'rxjs';
 
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
 
-import { StorageService } from '../services/storage.service';
 import { Receita } from 'src/app/models/receita';
 
 @Component({
@@ -14,7 +12,7 @@ import { Receita } from 'src/app/models/receita';
 export class HomePage {
   receitas: Receita[];
 
-  constructor(private storage: StorageService) {
+  constructor() {
     this.receitas = [];
   }
 
@@ -22,26 +20,5 @@ export class HomePage {
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
-  }
-
-  ngOnInit() {
-    try {
-      this.storage
-        .receitaState()
-        .pipe(
-          switchMap((res) => {
-            if (res) {
-              return this.storage.fetchReceitas();
-            } else {
-              return of([]); // Return an empty array when res is false
-            }
-          }),
-        )
-        .subscribe((data) => {
-          this.receitas = data; // Update the receita list when the data changes
-        });
-    } catch (err) {
-      throw new Error(`Error: ${err}`);
-    }
   }
 }
