@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Camera } from '@capacitor/camera';
+import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Platform, ItemReorderEventDetail } from '@ionic/angular';
 
 import {
@@ -9,6 +10,7 @@ import {
   Receita,
 } from 'src/app/models/receita';
 import { ReceitaService } from '../services/receita.service';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-edit',
@@ -112,9 +114,25 @@ export class EditPage {
       });
 
       if (imagem.photos[0]) {
+        const photo = imagem.photos[0];
+
+        let imageUrl = '';
+        if (Capacitor.getPlatform() === 'web') {
+          // For web, use the webPath directly as base64
+          const response = await fetch(photo.webPath!);
+          const blob = await response.blob();
+          imageUrl = await this.blobToBase64(blob);
+        } else {
+          // For native platforms, use Filesystem to read the file
+          const file = await Filesystem.readFile({
+            path: photo.path!,
+          });
+          imageUrl = `data:image/jpeg;base64,${file.data}`;
+        }
+
         this.receita.imagens.push({
           listIndex: NaN,
-          url: imagem.photos[0].webPath,
+          url: imageUrl,
         });
 
         this.receita.imagens.forEach(
@@ -126,6 +144,15 @@ export class EditPage {
     } catch (error) {
       console.error('Error capturing image:', error);
     }
+  }
+
+  private blobToBase64(blob: Blob): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
   }
 
   clearReceita() {
