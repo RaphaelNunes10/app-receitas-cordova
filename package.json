@@ -30,6 +30,8 @@
     "@capacitor/preferences": "^6.0.3",
     "@capacitor/status-bar": "6.0.1",
     "@ionic/angular": "^8.0.0",
+    "@maskito/angular": "^3.2.0",
+    "@maskito/core": "^3.2.0",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
