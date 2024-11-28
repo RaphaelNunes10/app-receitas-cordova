@@ -12,15 +12,17 @@
   </ion-header>
 
   <div class="md:px-[25vw]">
-    <form>
+    <form #form="ngForm" (ngSubmit)="addReceita()">
       <ion-card>
         <ion-card-content>
           <ion-label position="stacked">Titulo *</ion-label>
           <ion-item>
             <ion-input
               [(ngModel)]="receita.titulo"
+              name="titulo"
               placeholder="Minha Receita"
               required
+              #titulo="ngModel"
             ></ion-input>
           </ion-item>
 
@@ -68,8 +70,10 @@
           <ion-item>
             <ion-textarea
               [(ngModel)]="receita.descricao"
+              name="descricao"
               placeholder="Descrição da receita"
               required
+              #descricao="ngModel"
             ></ion-textarea>
           </ion-item>
         </ion-card-content>
@@ -82,26 +86,30 @@
             [disabled]="false"
             (ionItemReorder)="handleReorder($any($event), receita.ingredientes)"
           >
-            <ion-item *ngFor="let ingrediente of receita.ingredientes">
+            <ion-item *ngFor="let ingrediente of receita.ingredientes; let i=index">
               <ion-reorder slot="start"></ion-reorder>
               <ng-container *ngIf="isDesktop; else mobile">
                 <ion-row class="w-full">
                   <ion-col size="1">
                     <ion-input
                       [(ngModel)]="ingrediente.quantidade"
+                      [name]="'ingredienteQuantidade' + i"
                       type="number"
                       [placeholder]="0"
                       required
+                      #ingredienteQuantidade="ngModel"
                     ></ion-input>
                   </ion-col>
 
                   <ion-col size="3" sizeLg="2">
                     <ion-select
                       [(ngModel)]="ingrediente.medida"
+                      [name]="'ingredienteMedida' + i"
                       [placeholder]="medidasIngrediente[0]"
+                      #ingredienteMedida="ngModel"
                     >
                       <ion-select-option
-                        *ngFor="let medida of medidasIngrediente"
+                        *ngFor="let medida of medidasIngrediente; let i=index"
                         [value]="medida"
                         >{{ medida }}</ion-select-option
                       >
@@ -112,8 +120,10 @@
                     <ion-input
                       label="de"
                       [(ngModel)]="ingrediente.ingrediente"
+                      [name]="'ingredienteNome' + i"
                       placeholder="ingrediente"
                       required
+                      #ingredienteNome="ngModel"
                     ></ion-input>
                   </ion-col>
 
@@ -137,19 +147,23 @@
                       <ion-col>
                         <ion-input
                           [(ngModel)]="ingrediente.quantidade"
+                          [name]="'ingredienteQuantidade' + i"
                           class="max-w-10"
                           type="number"
                           [placeholder]="0"
                           required
+                          #ingredienteQuantidade="ngModel"
                         ></ion-input>
                       </ion-col>
                       <ion-col>
                         <ion-select
                           [(ngModel)]="ingrediente.medida"
+                          [name]="'ingredienteMedida' + i"
                           [placeholder]="medidasIngrediente[0]"
+                          #ingredienteMedida="ngModel"
                         >
                           <ion-select-option
-                            *ngFor="let medida of medidasIngrediente"
+                            *ngFor="let medida of medidasIngrediente; let i=index"
                             [value]="medida"
                             >{{ medida }}</ion-select-option
                           >
@@ -161,8 +175,10 @@
                       <ion-input
                         label="de"
                         [(ngModel)]="ingrediente.ingrediente"
+                        [name]="'ingredienteNome' + i"
                         placeholder="ingrediente"
                         required
+                        #ingredienteNome="ngModel"
                       ></ion-input>
                     </ion-row>
                   </ion-col>
@@ -198,18 +214,22 @@
             [disabled]="false"
             (ionItemReorder)="handleReorder($any($event), receita.utensilios)"
           >
-            <ion-item *ngFor="let utensilio of receita.utensilios">
+            <ion-item *ngFor="let utensilio of receita.utensilios; let i=index">
               <ion-reorder slot="start"></ion-reorder>
               <ion-input
                 [(ngModel)]="utensilio.quantidade"
+                [name]="'utensilioQuantidade' + i"
                 class="max-w-10"
                 type="number"
                 [placeholder]="0"
+                #utensilioQuantidade="ngModel"
               ></ion-input>
               <ion-input
                 label="x"
                 [(ngModel)]="utensilio.utensilio"
+                [name]="'utensilioNome' + i"
                 placeholder="utensílio"
+                #utensilioNome="ngModel"
               ></ion-input>
               <ion-button
                 color="primary"
@@ -236,15 +256,17 @@
             [disabled]="false"
             (ionItemReorder)="handleReorder($any($event), receita.preparo)"
           >
-            <ion-item *ngFor="let preparo of receita.preparo">
+            <ion-item *ngFor="let preparo of receita.preparo; let i=index">
               <ion-reorder slot="start"></ion-reorder>
               <ion-row class="w-full">
                 <ion-col>
                   <ion-textarea
                     label="•"
                     [(ngModel)]="preparo.passo"
+                    [name]="'passo' + i"
                     placeholder="{{ preparo.listIndex + 1 }}º passo"
                     required
+                    #passo="ngModel"
                   ></ion-textarea>
                 </ion-col>
 
@@ -277,7 +299,9 @@
           <ion-item>
             <ion-input
               [(ngModel)]="receita.tempoPreparo"
+              name="tempoPreparo"
               placeholder="00:00:00"
+              #tempoPreparo="ngModel"
             >
               <ion-icon slot="start" name="timer-outline"></ion-icon>
             </ion-input>
@@ -288,16 +312,20 @@
             <ion-input
               type="number"
               [(ngModel)]="receita.porcao.quantidade"
+              name="porcaoQuantidade"
               [placeholder]="0"
+              #porcaoQuantidade="ngModel"
             >
               <ion-icon slot="start" name="restaurant-outline"></ion-icon>
             </ion-input>
             <ion-select
               [(ngModel)]="receita.porcao.medida"
+              name="porcaoMedida"
               [placeholder]="medidasPorcao[0]"
+              #porcaoMedida="ngModel"
             >
               <ion-select-option
-                *ngFor="let medida of medidasPorcao"
+                *ngFor="let medida of medidasPorcao; let i=index"
                 [value]="medida"
                 >{{ medida }}</ion-select-option
               >
@@ -307,7 +335,7 @@
       </ion-card>
 
       <ion-card class="bg-transparent shadow-none !flex justify-center">
-        <ion-button color="primary" shape="round" (click)="addReceita()">
+        <ion-button type="submit" color="primary" shape="round" [disabled]="form.invalid">
           Adicionar receita
         </ion-button>
       </ion-card>
