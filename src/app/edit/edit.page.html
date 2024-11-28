@@ -278,6 +278,8 @@
             <ion-input
               [(ngModel)]="receita.tempoPreparo"
               placeholder="00:00:00"
+            [maskito]="tempoPreparoMask"
+            [maskitoElement]="maskPredicate"
             >
               <ion-icon slot="start" name="timer-outline"></ion-icon>
             </ion-input>

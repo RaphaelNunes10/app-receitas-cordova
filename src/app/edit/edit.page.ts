@@ -12,6 +12,12 @@ import {
 import { ReceitaService } from '../services/receita.service';
 import { Capacitor } from '@capacitor/core';
 
+import {
+  MaskitoOptions,
+  MaskitoElementPredicate,
+  maskitoTransform,
+} from '@maskito/core';
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.page.html',
@@ -23,6 +29,13 @@ export class EditPage {
   receita: Receita;
   medidasIngrediente: MedidaIngrediente[];
   medidasPorcao: MedidaPorcao[];
+
+  readonly tempoPreparoMask: MaskitoOptions = {
+    mask: [/\d/, /\d/, ':', /\d/, /\d/, ':', /\d/, /\d/],
+  };
+
+  readonly maskPredicate: MaskitoElementPredicate = async (el) =>
+    (el as HTMLIonInputElement).getInputElement();
 
   constructor(
     private platform: Platform,
