@@ -23,6 +23,7 @@
               placeholder="Minha Receita"
               required
               #titulo="ngModel"
+              errorText="Título é obrigatório."
             ></ion-input>
           </ion-item>
 
@@ -74,6 +75,7 @@
               placeholder="Descrição da receita"
               required
               #descricao="ngModel"
+              errorText="Descrição é obrigatória."
             ></ion-textarea>
           </ion-item>
         </ion-card-content>
@@ -124,6 +126,7 @@
                       placeholder="ingrediente"
                       required
                       #ingredienteNome="ngModel"
+                      errorText="Ingreientes são obrigatórios. Adicione pelo menos um ingrediente ou remova o ingrediente em branco."
                     ></ion-input>
                   </ion-col>
 
@@ -179,6 +182,7 @@
                         placeholder="ingrediente"
                         required
                         #ingredienteNome="ngModel"
+                        errorText="Ingreientes são obrigatórios. Adicione pelo menos um ingrediente ou remova o ingrediente em branco."
                       ></ion-input>
                     </ion-row>
                   </ion-col>
@@ -267,6 +271,7 @@
                     placeholder="{{ preparo.listIndex + 1 }}º passo"
                     required
                     #passo="ngModel"
+                    errorText="Preparo é obrigatório. Adicione pelo menos um passo para o preparo ou remova o passo em branco."
                   ></ion-textarea>
                 </ion-col>
 
