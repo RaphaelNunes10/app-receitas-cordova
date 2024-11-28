@@ -17,6 +17,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./edit/edit.module').then((m) => m.EditPageModule),
   },
+  {
+    path: 'view',
+    loadChildren: () =>
+      import('./view/view.module').then((m) => m.ViewPageModule),
+  },
 ];
 
 @NgModule({
