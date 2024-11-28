@@ -11,23 +11,34 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-list *ngIf="receitas.length > 0">
-    <ion-item *ngFor="let receita of receitas">
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>{{ receita.titulo }}</ion-card-title>
-          <ion-card-subtitle>{{ receita.dataCriacao }}</ion-card-subtitle>
-        </ion-card-header>
+  <div class="md:px-[25vw]">
+    <ion-card *ngFor="let receita of receitas">
+      <ion-card-header class="p-1 pb-0">
+        <ion-card-title class="text-[1em] font-bold leading-none"
+          >{{ receita.titulo }}</ion-card-title
+        >
+        <ion-card-subtitle class="mt-0"
+          ><ion-label class="text-[0.7em] leading-none"
+            >{{ receita.dataCriacao.toLocaleString() }}</ion-label
+          ></ion-card-subtitle
+        >
+      </ion-card-header>
 
-        <ion-card-content>
-          <ion-img [src]="receita.imagens[0]" />
-          <p>{{receita.descricao}}</p>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-  </ion-list>
+      <ion-card-content class="p-1">
+        <ion-row class="w-full">
+          <ion-col size="3" sizeMd="3" sizeLg="2">
+            <ion-img
+              class="w-full aspect-square object-cover"
+              [src]="receita.imagens[0].url"
+            />
+          </ion-col>
+          <ion-col> {{receita.descricao}} </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
 </ion-content>
