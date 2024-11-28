@@ -24,7 +24,10 @@ export class EditPage {
   medidasIngrediente: MedidaIngrediente[];
   medidasPorcao: MedidaPorcao[];
 
-  constructor(private platform: Platform, private receitaService: ReceitaService) {
+  constructor(
+    private platform: Platform,
+    private receitaService: ReceitaService,
+  ) {
     this.isDesktop = this.platform.is('desktop');
 
     this.receita = {
