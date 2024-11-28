@@ -57,5 +57,5 @@ export interface Receita {
   preparo: Preparo[];
   tempoPreparo: string;
   porcao: Porcao;
-  dataCriacao: Date | undefined;
+  dataCriacao: Date;
 }

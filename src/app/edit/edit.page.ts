@@ -53,7 +53,7 @@ export class EditPage {
         quantidade: NaN,
         medida: 'Unidade(s)',
       },
-      dataCriacao: undefined,
+      dataCriacao: new Date(),
     };
 
     this.medidasIngrediente = [
@@ -182,11 +182,12 @@ export class EditPage {
         quantidade: NaN,
         medida: 'Unidade(s)',
       },
-      dataCriacao: undefined,
+      dataCriacao: new Date(),
     };
   }
 
   addReceita() {
+    this.receita.dataCriacao = new Date();
     this.receitaService.createReceita(this.receita);
   }
 }
