@@ -189,5 +189,6 @@ export class EditPage {
   addReceita() {
     this.receita.dataCriacao = new Date();
     this.receitaService.createReceita(this.receita);
+    this.clearReceita();
   }
 }
