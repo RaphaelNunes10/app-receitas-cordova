@@ -219,7 +219,7 @@ export class EditPage {
       this.receita.dataCriacao = new Date();
       try {
         await this.receitaService.createReceita(this.receita);
-      this.clearReceita();
+        this.clearReceita();
         // this.router.navigate(['/home']);
       } catch {
         this.errorMessage = 'Houve um erro interno ao cadastrar a receita.';

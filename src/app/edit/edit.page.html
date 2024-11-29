@@ -88,7 +88,9 @@
             [disabled]="false"
             (ionItemReorder)="handleReorder($any($event), receita.ingredientes)"
           >
-            <ion-item *ngFor="let ingrediente of receita.ingredientes; let i=index">
+            <ion-item
+              *ngFor="let ingrediente of receita.ingredientes; let i=index"
+            >
               <ion-reorder slot="start"></ion-reorder>
               <ng-container *ngIf="isDesktop; else mobile">
                 <ion-row class="w-full">
@@ -307,8 +309,8 @@
               name="tempoPreparo"
               placeholder="00:00:00"
               #tempoPreparo="ngModel"
-            [maskito]="tempoPreparoMask"
-            [maskitoElement]="maskPredicate"
+              [maskito]="tempoPreparoMask"
+              [maskitoElement]="maskPredicate"
             >
               <ion-icon slot="start" name="timer-outline"></ion-icon>
             </ion-input>
@@ -350,8 +352,8 @@
             shape="round"
             [disabled]="form.invalid"
           >
-          Adicionar receita
-        </ion-button>
+            Adicionar receita
+          </ion-button>
           <small *ngIf="errorMessage" class="prose text-red-500"
             >{{ errorMessage }}</small
           >
