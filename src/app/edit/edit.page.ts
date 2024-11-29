@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { Camera } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
@@ -24,6 +25,8 @@ import {
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage {
+  @ViewChild('form', { static: false }) form!: NgForm;
+
   isDesktop: boolean;
 
   receita: Receita;
@@ -203,8 +206,10 @@ export class EditPage {
   }
 
   addReceita() {
-    this.receita.dataCriacao = new Date();
-    this.receitaService.createReceita(this.receita);
-    this.clearReceita();
+    if (this.form.valid) {
+      this.receita.dataCriacao = new Date();
+      this.receitaService.createReceita(this.receita);
+      this.clearReceita();
+    }
   }
 }
