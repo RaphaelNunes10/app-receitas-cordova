@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Camera } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
@@ -42,6 +43,7 @@ export class EditPage {
     (el as HTMLIonInputElement).getInputElement();
 
   constructor(
+    private router: Router,
     private platform: Platform,
     private receitaService: ReceitaService,
   ) {
