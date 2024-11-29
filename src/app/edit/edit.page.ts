@@ -32,6 +32,7 @@ export class EditPage {
   receita: Receita;
   medidasIngrediente: MedidaIngrediente[];
   medidasPorcao: MedidaPorcao[];
+  errorMessage: string;
 
   readonly tempoPreparoMask: MaskitoOptions = {
     mask: [/\d/, /\d/, ':', /\d/, /\d/, ':', /\d/, /\d/],
@@ -96,6 +97,8 @@ export class EditPage {
       'L',
       'Pessoa(s)',
     ];
+
+    this.errorMessage = '';
   }
 
   async addItem(object: any, list: any[]) {
@@ -203,13 +206,22 @@ export class EditPage {
       },
       dataCriacao: new Date(),
     };
+
+    this.errorMessage = '';
   }
 
-  addReceita() {
-    if (this.form.valid) {
+  async addReceita() {
+    if (this.receita.imagens.length == 0) {
+      this.errorMessage = 'Cadastre pelo menos uma imagem.';
+    } else if (this.form.valid) {
       this.receita.dataCriacao = new Date();
-      this.receitaService.createReceita(this.receita);
+      try {
+        await this.receitaService.createReceita(this.receita);
       this.clearReceita();
+        // this.router.navigate(['/home']);
+      } catch {
+        this.errorMessage = 'Houve um erro interno ao cadastrar a receita.';
+      }
     }
   }
 }

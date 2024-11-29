@@ -341,10 +341,21 @@
         </ion-card-content>
       </ion-card>
 
-      <ion-card class="bg-transparent shadow-none !flex justify-center">
-        <ion-button type="submit" color="primary" shape="round" [disabled]="form.invalid">
+      <ion-card class="bg-transparent shadow-none">
+        <ion-card-content class="!flex flex-col items-center">
+          <ion-button
+            class="max-w-fit"
+            type="submit"
+            color="primary"
+            shape="round"
+            [disabled]="form.invalid"
+          >
           Adicionar receita
         </ion-button>
+          <small *ngIf="errorMessage" class="prose text-red-500"
+            >{{ errorMessage }}</small
+          >
+        </ion-card-content>
       </ion-card>
     </form>
   </div>
