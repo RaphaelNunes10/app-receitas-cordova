@@ -122,7 +122,7 @@
 
                   <ion-col>
                     <ion-input
-                      label="de"
+                      [label]="ingrediente.medida === 'X' ? '' : 'de'"
                       [(ngModel)]="ingrediente.ingrediente"
                       [name]="'ingredienteNome' + i"
                       placeholder="ingrediente"
@@ -207,7 +207,7 @@
           <ion-button
             color="primary"
             expand="full"
-            (click)="addItem({ quantidade: null, medida: 'Colher de Café', ingrediente: '' }, receita.ingredientes)"
+            (click)="addItem({ quantidade: null, medida: 'X', ingrediente: '' }, receita.ingredientes)"
             >Adicionar ingrediente</ion-button
           >
         </ion-card-content>
@@ -231,7 +231,7 @@
                 #utensilioQuantidade="ngModel"
               ></ion-input>
               <ion-input
-                label="x"
+                label="X"
                 [(ngModel)]="utensilio.utensilio"
                 [name]="'utensilioNome' + i"
                 placeholder="utensílio"

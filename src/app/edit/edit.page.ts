@@ -59,7 +59,7 @@ export class EditPage {
         {
           listIndex: 0,
           quantidade: NaN,
-          medida: 'Colher de Café',
+          medida: 'X',
           ingrediente: '',
         },
       ],
@@ -79,10 +79,15 @@ export class EditPage {
     };
 
     this.medidasIngrediente = [
-      'Colher de Café',
-      'Colher de Chá',
-      'Colher de Sobremesa',
-      'Colher de Sopa',
+      'X',
+      'Colher(es) de Café',
+      'Colher(es) de Chá',
+      'Colher(es) de Sobremesa',
+      'Colher(es) de Sopa',
+      'Xicara(s) de café',
+      'Xicara(s) de chá',
+      'Copo(s) americano',
+      'Copo(s) de requeijão',
       'mg',
       'g',
       'Kg',
@@ -190,7 +195,7 @@ export class EditPage {
         {
           listIndex: 0,
           quantidade: NaN,
-          medida: 'Colher de Café',
+          medida: 'X',
           ingrediente: '',
         },
       ],
