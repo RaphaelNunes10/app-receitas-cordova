@@ -13,7 +13,7 @@
 
   <div class="md:px-[25vw]">
     <ion-card *ngFor="let receita of receitas">
-      <ion-card-header class="p-1 pb-0">
+      <ion-card-header class="p-3 pb-0">
         <ion-card-title class="text-[1em] font-bold leading-none"
           >{{ receita.titulo }}</ion-card-title
         >
@@ -24,15 +24,17 @@
         >
       </ion-card-header>
 
-      <ion-card-content class="p-1">
+      <ion-card-content class="p-2">
         <ion-row class="w-full">
-          <ion-col size="3" sizeMd="3" sizeLg="2">
+          <ion-col size="3" sizeMd="3" sizeXl="1.8">
             <ion-img
               class="w-full aspect-square object-cover"
               [src]="receita.imagens[0].url"
             />
           </ion-col>
-          <ion-col> {{receita.descricao}} </ion-col>
+          <ion-col>
+            <p class="indent-4 text-justify line-clamp-4 xl:line-clamp-6">{{receita.descricao}}</p>
+          </ion-col>
         </ion-row>
       </ion-card-content>
     </ion-card>
