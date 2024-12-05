@@ -17,14 +17,24 @@
       [routerLink]="['/view/', receita.id, receita.titulo]"
     >
       <ion-card-header class="p-3 pb-0">
-        <ion-card-title class="text-[1em] font-bold leading-none"
-          >{{ receita.titulo }}</ion-card-title
-        >
-        <ion-card-subtitle class="mt-0"
-          ><ion-label class="text-[0.7em] leading-none"
-            >{{ receita.dataCriacao.toLocaleString() }}</ion-label
-          ></ion-card-subtitle
-        >
+        <ion-row>
+          <ion-col>
+            <ion-card-title class="text-[1em] font-bold leading-none"
+              >{{ receita.titulo }}</ion-card-title
+            >
+            <ion-card-subtitle class="mt-0"
+              ><ion-label class="text-[0.7em] leading-none"
+                >{{ receita.dataCriacao.toLocaleString() }}</ion-label
+              ></ion-card-subtitle
+            >
+          </ion-col>
+          <ion-col size="1">
+            <ion-icon
+              class="align-bottom size-4 fill-red-600"
+              name="trash"
+            ></ion-icon>
+          </ion-col>
+        </ion-row>
       </ion-card-header>
 
       <ion-card-content class="p-2">
