@@ -6,11 +6,15 @@ import { ViewPage } from './view.page';
 const routes: Routes = [
   {
     path: '',
-    component: ViewPage,
     children: [
       {
-        path: ':receita',
-        component: ViewPage,
+        path: ':receitaId',
+        children: [
+          {
+            path: ':receitaTitulo',
+            component: ViewPage,
+          },
+        ],
       },
     ],
   },

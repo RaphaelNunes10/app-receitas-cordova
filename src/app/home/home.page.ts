@@ -11,17 +11,9 @@ import { ReceitaService } from '../services/receita.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  receitas: Receita[];
+  receitas!: Receita[];
 
-  constructor(private receitaService: ReceitaService) {
-    this.receitas = [];
-  }
-
-  onIonInfinite(ev: InfiniteScrollCustomEvent) {
-    setTimeout(() => {
-      (ev as InfiniteScrollCustomEvent).target.complete();
-    }, 500);
-  }
+  constructor(private receitaService: ReceitaService) {}
 
   async ngOnInit(): Promise<void> {
     await this.receitaService.fetchReceita();
@@ -29,5 +21,11 @@ export class HomePage implements OnInit {
       ...receita,
       dataCriacao: new Date(receita.dataCriacao),
     }));
+  }
+
+  onIonInfinite(ev: InfiniteScrollCustomEvent) {
+    setTimeout(() => {
+      (ev as InfiniteScrollCustomEvent).target.complete();
+    }, 500);
   }
 }
