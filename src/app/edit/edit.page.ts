@@ -33,7 +33,7 @@ export class EditPage {
   receita: Receita;
   medidasIngrediente: MedidaIngrediente[];
   medidasPorcao: MedidaPorcao[];
-  errorMessage: string;
+  errorMessage!: string;
 
   readonly tempoPreparoMask: MaskitoOptions = {
     mask: [/\d/, /\d/, ':', /\d/, /\d/, ':', /\d/, /\d/],
@@ -104,8 +104,6 @@ export class EditPage {
       'L',
       'Pessoa(s)',
     ];
-
-    this.errorMessage = '';
   }
 
   async addItem(object: any, list: any[]) {
