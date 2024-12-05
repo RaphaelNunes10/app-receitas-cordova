@@ -21,6 +21,8 @@ export class ReceitaService {
       key: 'receitas',
       value: JSON.stringify(this.receitas),
     });
+
+    await this.fetchReceita();
   }
 
   public async fetchReceita() {
