@@ -14,6 +14,11 @@
   <div class="md:px-[25vw]" *ngIf="receita">
     <ion-card>
       <ion-card-content>
+        <swiper-container [modules]="swiperModules" [pagination]="true" navigation="true" css-mode="true">
+          <swiper-slide *ngFor="let imagem of receita.imagens">
+            <img [src]="imagem.url">
+          </swiper-slide>
+        </swiper-container>
 
         <ion-row class="flex-row-reverse">
           <ion-col *ngIf="isDesktop === true" size="1"></ion-col>

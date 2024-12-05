@@ -6,6 +6,11 @@ import { ReceitaService } from '../services/receita.service';
 
 import { Platform, IonicSlides } from '@ionic/angular';
 
+import { register } from 'swiper/element/bundle';
+import { Swiper } from 'swiper';
+
+register();
+
 @Component({
   selector: 'app-view',
   templateUrl: './view.page.html',
@@ -15,6 +20,9 @@ export class ViewPage implements OnInit {
   receitaId!: string;
   receitaTitulo!: string;
   receita!: Receita;
+
+  swiperModules = [IonicSlides];
+  swiper!: Swiper
 
   isDesktop: boolean;
 
