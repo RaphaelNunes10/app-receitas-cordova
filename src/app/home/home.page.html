@@ -12,7 +12,10 @@
   </ion-header>
 
   <div class="md:px-[25vw]">
-    <ion-card *ngFor="let receita of receitas">
+    <ion-card
+      *ngFor="let receita of receitas"
+      [routerLink]="['/view/', receita.id, receita.titulo]"
+    >
       <ion-card-header class="p-3 pb-0">
         <ion-card-title class="text-[1em] font-bold leading-none"
           >{{ receita.titulo }}</ion-card-title
