@@ -11,6 +11,6 @@ import { ViewPage } from './view.page';
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, ViewPageRoutingModule],
   declarations: [ViewPage],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ViewPageModule {}

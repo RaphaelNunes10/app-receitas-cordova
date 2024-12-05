@@ -22,7 +22,7 @@ export class ViewPage implements OnInit {
   receita!: Receita;
 
   swiperModules = [IonicSlides];
-  swiper!: Swiper
+  swiper!: Swiper;
 
   isDesktop: boolean;
 
@@ -37,36 +37,36 @@ export class ViewPage implements OnInit {
   async getReceita() {
     await this.receitaService.fetchReceita();
 
-    this.receita =
-      this.receitaService.receitas.find((item) => item.id == this.receitaId) ||
-      {
-        id: '',
-        listIndex: NaN,
-        titulo: '',
-        imagens: [],
-        descricao: '',
-        ingredientes: [
-          {
-            listIndex: 0,
-            quantidade: NaN,
-            medida: 'X',
-            ingrediente: '',
-          },
-        ],
-        utensilios: [],
-        preparo: [
-          {
-            listIndex: 0,
-            passo: '',
-          },
-        ],
-        tempoPreparo: '',
-        porcao: {
+    this.receita = this.receitaService.receitas.find(
+      (item) => item.id == this.receitaId,
+    ) || {
+      id: '',
+      listIndex: NaN,
+      titulo: '',
+      imagens: [],
+      descricao: '',
+      ingredientes: [
+        {
+          listIndex: 0,
           quantidade: NaN,
-          medida: 'Unidade(s)',
+          medida: 'X',
+          ingrediente: '',
         },
-        dataCriacao: new Date(),
-      };
+      ],
+      utensilios: [],
+      preparo: [
+        {
+          listIndex: 0,
+          passo: '',
+        },
+      ],
+      tempoPreparo: '',
+      porcao: {
+        quantidade: NaN,
+        medida: 'Unidade(s)',
+      },
+      dataCriacao: new Date(),
+    };
   }
 
   async ngOnInit() {
