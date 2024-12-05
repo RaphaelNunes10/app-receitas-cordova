@@ -219,6 +219,9 @@ export class EditPage {
     if (this.receita.imagens.length == 0) {
       this.errorMessage = 'Cadastre pelo menos uma imagem.';
     } else if (this.form.valid) {
+      this.receita.id = Math.random()
+        .toString(36)
+        .substring(2, 2 + 5);
       this.receita.dataCriacao = new Date();
       try {
         await this.receitaService.createReceita(this.receita);
