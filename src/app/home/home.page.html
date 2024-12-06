@@ -30,10 +30,12 @@
           </ion-col>
           <ion-col class="flex flex-row-reverse" size="1">
             <ion-button
+              [id]="'open-delete-modal'+receita.id"
+              class="m-0"
               size="small"
               fill="clear"
               shape="round"
-              (click)="removeReceita(receita.id); $event.preventDefault(); $event.stopPropagation()"
+              (click)="$event.preventDefault(); $event.stopPropagation()"
             >
               <ion-icon
                 class="align-bottom size-4 fill-red-600"
@@ -60,6 +62,31 @@
           </ion-col>
         </ion-row>
       </ion-card-content>
+
+      <ion-modal [id]="'delete-modal'+receita.id" #modal [trigger]="'open-delete-modal'+receita.id">
+        <ng-template>
+          <div class="wrapper">
+            <ion-card class="w-full h-full m-0">
+              <ion-card-header class="p-3 pb-0">
+                <ion-card-title class="text-[1em] font-bold leading-none text-center">
+                  Deseja realmente remover a receita?
+                </ion-card-title>
+              </ion-card-header>
+  
+              <ion-card-content>
+                <ion-row>
+                  <ion-col>
+                    <ion-button expand="block" color="danger" (click)="modal.dismiss()">Cancelar</ion-button>
+                  </ion-col>
+                  <ion-col>
+                    <ion-button expand="block" color="success" (click)="removeReceita(receita.id); modal.dismiss()">Sim</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ng-template>
+      </ion-modal>
     </ion-card>
 
     <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
