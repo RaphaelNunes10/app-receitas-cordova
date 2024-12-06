@@ -28,11 +28,19 @@
               ></ion-card-subtitle
             >
           </ion-col>
-          <ion-col size="1">
-            <ion-icon
-              class="align-bottom size-4 fill-red-600"
-              name="trash"
-            ></ion-icon>
+          <ion-col class="flex flex-row-reverse" size="1">
+            <ion-button
+              size="small"
+              fill="clear"
+              shape="round"
+              (click)="removeReceita(receita.id); $event.preventDefault(); $event.stopPropagation()"
+            >
+              <ion-icon
+                class="align-bottom size-4 fill-red-600"
+                slot="icon-only"
+                name="trash"
+              ></ion-icon>
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-card-header>

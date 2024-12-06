@@ -14,6 +14,12 @@ export class ReceitaService {
     this.receitas = [];
   }
 
+  public async fetchReceita() {
+    const { value } = await Preferences.get({ key: 'receitas' });
+
+    value ? (this.receitas = JSON.parse(value)) : (this.receitas = []);
+  }
+
   public async createReceita(receita: Receita) {
     this.receitas.push(receita);
 
@@ -25,9 +31,15 @@ export class ReceitaService {
     await this.fetchReceita();
   }
 
-  public async fetchReceita() {
-    const { value } = await Preferences.get({ key: 'receitas' });
+  public async deleteReceita(id: string) {
+    const index = this.receitas.findIndex((receita) => receita.id === id);
+    this.receitas.splice(index, 1);
 
-    value ? (this.receitas = JSON.parse(value)) : (this.receitas = []);
+    await Preferences.set({
+      key: 'receitas',
+      value: JSON.stringify(this.receitas),
+    });
+
+    await this.fetchReceita();
   }
 }
