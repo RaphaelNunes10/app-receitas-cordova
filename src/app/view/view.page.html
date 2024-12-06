@@ -5,9 +5,8 @@
         <ion-title>{{receitaTitulo}}</ion-title>
       </ion-col>
 
-      <ion-col size="1">
+      <ion-col class="flex flex-row-reverse items-center mr-2 md:mr-4" size="1">
         <ion-icon
-          class="align-bottom"
           name="return-up-back-outline"
           [routerLink]="['/home']"
         ></ion-icon>
@@ -24,9 +23,11 @@
           <ion-title>{{receitaTitulo}}</ion-title>
         </ion-col>
 
-        <ion-col size="1">
+        <ion-col
+          class="flex flex-row-reverse items-center mr-2 md:mr-4"
+          size="1"
+        >
           <ion-icon
-            class="align-bottom"
             name="return-up-back-outline"
             [routerLink]="['/home']"
           ></ion-icon>
@@ -147,7 +148,7 @@
   </div>
 </ion-content>
 
-<div class="flex flex-row-reverse m-1">
+<div class="flex flex-row-reverse m-1 md:m-4">
   <ion-button color="primary" shape="round">
     <ion-icon slot="icon-only" name="create-outline"></ion-icon>
   </ion-button>
