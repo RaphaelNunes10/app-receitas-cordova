@@ -16,7 +16,10 @@ import { ReceitaService } from '../services/receita.service';
 export class HomePage implements OnInit {
   receitas!: Receita[];
 
-  constructor(private router: Router, private receitaService: ReceitaService) {}
+  constructor(
+    private router: Router,
+    private receitaService: ReceitaService,
+  ) {}
 
   private async loadReceitas(): Promise<void> {
     await this.receitaService.fetchReceita();
@@ -35,7 +38,11 @@ export class HomePage implements OnInit {
     this.loadReceitas();
 
     this.router.events
-      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .pipe(
+        filter(
+          (event): event is NavigationEnd => event instanceof NavigationEnd,
+        ),
+      )
       .subscribe(async (event) => {
         if (event.url === '/home') {
           await this.loadReceitas();
