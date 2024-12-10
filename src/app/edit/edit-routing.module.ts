@@ -8,6 +8,10 @@ const routes: Routes = [
     path: '',
     component: EditPage,
   },
+  {
+    path: ':receitaId/:receitaTitulo',
+    component: EditPage,
+  },
 ];
 
 @NgModule({

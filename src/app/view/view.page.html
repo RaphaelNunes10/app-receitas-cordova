@@ -149,7 +149,11 @@
 </ion-content>
 
 <div class="flex flex-row-reverse m-1 md:m-4">
-  <ion-button color="primary" shape="round">
+  <ion-button
+    color="primary"
+    shape="round"
+    [routerLink]="['/edit/', receitaId, receitaTitulo]"
+  >
     <ion-icon slot="icon-only" name="create-outline"></ion-icon>
   </ion-button>
 </div>
