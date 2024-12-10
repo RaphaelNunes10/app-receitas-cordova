@@ -5,18 +5,8 @@ import { ViewPage } from './view.page';
 
 const routes: Routes = [
   {
-    path: '',
-    children: [
-      {
-        path: ':receitaId',
-        children: [
-          {
-            path: ':receitaTitulo',
-            component: ViewPage,
-          },
-        ],
-      },
-    ],
+    path: ':receitaId/:receitaTitulo',
+    component: ViewPage,
   },
 ];
 
