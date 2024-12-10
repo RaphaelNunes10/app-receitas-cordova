@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Camera } from '@capacitor/camera';
-import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Filesystem } from '@capacitor/filesystem';
 import { Platform, ItemReorderEventDetail } from '@ionic/angular';
 
 import {
@@ -39,6 +39,7 @@ export class EditPage implements OnInit {
   receita: Receita;
   medidasIngrediente: MedidaIngrediente[];
   medidasPorcao: MedidaPorcao[];
+
   errorMessage!: string;
 
   readonly tempoPreparoMask: MaskitoOptions = {
