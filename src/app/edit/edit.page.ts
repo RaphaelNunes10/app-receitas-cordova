@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Camera } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
@@ -25,10 +25,13 @@ import {
   templateUrl: './edit.page.html',
   styleUrls: ['./edit.page.scss'],
 })
-export class EditPage {
+export class EditPage implements OnInit {
   @ViewChild('form', { static: false }) form!: NgForm;
 
   isDesktop: boolean;
+
+  receitaId!: string;
+  receitaTitulo!: string;
 
   receita: Receita;
   medidasIngrediente: MedidaIngrediente[];
@@ -43,6 +46,7 @@ export class EditPage {
     (el as HTMLIonInputElement).getInputElement();
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private platform: Platform,
     private receitaService: ReceitaService,
@@ -182,6 +186,41 @@ export class EditPage {
     });
   }
 
+  async getReceita() {
+    await this.receitaService.fetchReceita();
+
+    this.receita = this.receitaService.receitas.find(
+      (item) => item.id == this.receitaId,
+    ) || {
+      id: '',
+      listIndex: NaN,
+      titulo: '',
+      imagens: [],
+      descricao: '',
+      ingredientes: [
+        {
+          listIndex: 0,
+          quantidade: NaN,
+          medida: 'X',
+          ingrediente: '',
+        },
+      ],
+      utensilios: [],
+      preparo: [
+        {
+          listIndex: 0,
+          passo: '',
+        },
+      ],
+      tempoPreparo: '',
+      porcao: {
+        quantidade: NaN,
+        medida: 'Unidade(s)',
+      },
+      dataCriacao: new Date(),
+    };
+  }
+
   clearReceita() {
     this.receita = {
       id: '',
@@ -231,5 +270,34 @@ export class EditPage {
         this.errorMessage = 'Houve um erro interno ao cadastrar a receita.';
       }
     }
+  }
+
+  async editReceita() {
+    if (this.receita.imagens.length == 0) {
+      this.errorMessage = 'Cadastre pelo menos uma imagem.';
+    } else if (this.form.valid) {
+      try {
+        const index = this.receitaService.receitas.findIndex(
+          (item) => item.id === this.receitaId,
+        );
+
+        await this.receitaService.updateReceita(index, this.receita);
+        this.clearReceita();
+        this.router.navigate(['/home']);
+      } catch {
+        this.errorMessage = 'Houve um erro interno ao editar a receita.';
+      }
+    }
+  }
+
+  async ngOnInit() {
+    this.route.paramMap.subscribe((params) => {
+      this.receitaId = params.get('receitaId') || '';
+      this.receitaTitulo = params.get('receitaTitulo') || '';
+
+      if (this.receitaId && this.receitaTitulo) {
+        this.getReceita();
+      }
+    });
   }
 }

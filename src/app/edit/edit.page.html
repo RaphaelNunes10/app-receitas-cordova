@@ -12,7 +12,10 @@
   </ion-header>
 
   <div class="md:px-[25vw]">
-    <form #form="ngForm" (ngSubmit)="addReceita()">
+    <form
+      #form="ngForm"
+      (ngSubmit)="receitaId.length > 0 ? editReceita() : addReceita()"
+    >
       <ion-card>
         <ion-card-content>
           <ion-label position="stacked">Titulo *</ion-label>

@@ -31,6 +31,17 @@ export class ReceitaService {
     await this.fetchReceita();
   }
 
+  public async updateReceita(index: number, receita: Receita) {
+    this.receitas[index] = receita;
+
+    await Preferences.set({
+      key: 'receitas',
+      value: JSON.stringify(this.receitas),
+    });
+
+    await this.fetchReceita();
+  }
+
   public async deleteReceita(id: string) {
     const index = this.receitas.findIndex((receita) => receita.id === id);
     this.receitas.splice(index, 1);
