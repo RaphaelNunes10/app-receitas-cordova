@@ -33,6 +33,9 @@ export class EditPage implements OnInit {
   receitaId!: string;
   receitaTitulo!: string;
 
+  tituloPagina: string;
+  tituloBotaoSubmit: string;
+
   receita: Receita;
   medidasIngrediente: MedidaIngrediente[];
   medidasPorcao: MedidaPorcao[];
@@ -52,6 +55,9 @@ export class EditPage implements OnInit {
     private receitaService: ReceitaService,
   ) {
     this.isDesktop = this.platform.is('desktop');
+
+    this.tituloPagina = 'Adicionar receita';
+    this.tituloBotaoSubmit = 'Adicionar receita';
 
     this.receita = {
       id: '',
@@ -296,6 +302,8 @@ export class EditPage implements OnInit {
       this.receitaTitulo = params.get('receitaTitulo') || '';
 
       if (this.receitaId && this.receitaTitulo) {
+        this.tituloPagina = `Editar ${this.receitaTitulo}`;
+        this.tituloBotaoSubmit = 'Finalizar edição';
         this.getReceita();
       }
     });
