@@ -150,9 +150,9 @@
               </ng-container>
               <ng-template #mobile>
                 <ion-row class="w-full">
-                  <ion-col>
+                  <ion-col class="p-0" size="10">
                     <ion-row>
-                      <ion-col>
+                      <ion-col class="p-0" size="2">
                         <ion-input
                           [(ngModel)]="ingrediente.quantidade"
                           [name]="'ingredienteQuantidade' + i"
@@ -163,7 +163,7 @@
                           #ingredienteQuantidade="ngModel"
                         ></ion-input>
                       </ion-col>
-                      <ion-col>
+                      <ion-col class="p-0">
                         <ion-select
                           [(ngModel)]="ingrediente.medida"
                           [name]="'ingredienteMedida' + i"
@@ -192,7 +192,7 @@
                     </ion-row>
                   </ion-col>
 
-                  <ion-col size="3">
+                  <ion-col class="p-0" size="2">
                     <ion-button
                       color="primary"
                       class="w-full h-full !flex items-center justify-center"
@@ -268,7 +268,7 @@
             <ion-item *ngFor="let preparo of receita.preparo; let i=index">
               <ion-reorder slot="start"></ion-reorder>
               <ion-row class="w-full">
-                <ion-col>
+                <ion-col class="p-0">
                   <ion-textarea
                     label="•"
                     [(ngModel)]="preparo.passo"
@@ -280,7 +280,7 @@
                   ></ion-textarea>
                 </ion-col>
 
-                <ion-col size="3" sizeMd="2" sizeLg="1">
+                <ion-col class="p-0" size="2" sizeLg="1">
                   <ion-button
                     color="primary"
                     class="w-full h-full !flex items-center justify-center"
