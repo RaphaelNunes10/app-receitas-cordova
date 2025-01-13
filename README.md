@@ -1,5 +1,7 @@
 # APP Receitas IONIC/ANGULAR
 
+### :warning: Apenas a branch "local-storage" está finalizada, implementando armazenamento em cookies :warning:
+
 Aplicativo de receitas desenvolvido utilizando Angular, Ionic e Capacitor com o intuito de servir de llivro de receitas pessoal.
 
 ## Recursos:
@@ -8,7 +10,7 @@ Aplicativo de receitas desenvolvido utilizando Angular, Ionic e Capacitor com o 
 - Diferentes tipos de medidas de ingredientes
 - Lista infinita de receitas
 - Interface atraente com cores que remetem a confeitaria
-- Cadastro local utilizando cookies
+- Cadastro local utilizando ~~SQLite~~
 
 ![Opera Snapshot_2025-01-13_163650_localhost](https://github.com/user-attachments/assets/0bdf6b3f-0018-44a5-9517-c99e8c69f53e)
 ![Opera Snapshot_2025-01-13_163725_localhost](https://github.com/user-attachments/assets/d25e60cd-6ecc-4e05-b49a-a41a7fd00375)
